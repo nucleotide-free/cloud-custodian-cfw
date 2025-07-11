@@ -5,6 +5,8 @@ import logging
 import os
 import sys
 
+from huaweicloudsdkcfw.v1 import CfwClient, ListFirewallDetailRequest, ListFirewallListRequest, ListEipsRequest
+from huaweicloudsdkcfw.v1.region.cfw_region import CfwRegion
 from huaweicloudsdkconfig.v1 import ConfigClient, ShowTrackerConfigRequest
 from huaweicloudsdkconfig.v1.region.config_region import ConfigRegion
 from huaweicloudsdkcore.auth.credentials import BasicCredentials, GlobalCredentials
@@ -139,11 +141,11 @@ from huaweicloudsdkworkspace.v2 import WorkspaceClient, ListDesktopsDetailReques
 from huaweicloudsdkworkspace.v2.region.workspace_region import WorkspaceRegion
 from huaweicloudsdkccm.v1 import CcmClient, ListCertificateAuthorityRequest, ListCertificateRequest
 from huaweicloudsdkccm.v1.region.ccm_region import CcmRegion
-from c7n_huaweicloud.utils.cci_client import CCIClient
 from huaweicloudsdkvpcep.v1 import VpcepClient
 from huaweicloudsdkvpcep.v1.region.vpcep_region import VpcepRegion
 from huaweicloudsdkvpcep.v1 import ListEndpointsRequest
 
+from tools.c7n_huaweicloud.c7n_huaweicloud.utils.cci_client import CCIClient
 log = logging.getLogger("custodian.huaweicloud.client")
 
 
@@ -168,6 +170,7 @@ class Session:
         self.ak = self.ak or os.getenv("HUAWEI_ACCESS_KEY_ID")
         self.sk = self.sk or os.getenv("HUAWEI_SECRET_ACCESS_KEY")
         self.region = self.region or os.getenv("HUAWEI_DEFAULT_REGION")
+        self.token = self.token or os.getenv("HUAWEICLOUD_SECURITY_TOKEN")
 
         if not self.region:
             log.error(
@@ -545,6 +548,13 @@ class Session:
                 .with_region(VpcepRegion.value_of(self.region))
                 .build()
             )
+        elif service in ["cfw", "cfw-detail", "cfw-eip"]:
+            client = (
+                CfwClient.new_builder()
+                .with_credentials(credentials)
+                .with_region(CfwRegion.value_of(self.region))
+                .build()
+            )
         return client
 
     def region_client(self, service, region):
@@ -701,6 +711,12 @@ class Session:
             request = True
         elif service == 'vpcep-ep':
             request = ListEndpointsRequest()
+        elif service == 'cfw':
+            request = ListFirewallListRequest()
+        elif service == 'cfw-detail':
+            request = ListFirewallDetailRequest()
+        elif service == 'cfw-eip':
+            request = ListEipsRequest()
         return request
 
 

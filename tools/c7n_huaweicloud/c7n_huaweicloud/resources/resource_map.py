@@ -72,5 +72,8 @@ ResourceMap = {
     "huaweicloud.cci_pod": "c7n_huaweicloud.resources.cci.CCIPod",
     "huaweicloud.cci_configmap": "c7n_huaweicloud.resources.cci.CCIConfigMap",
     "huaweicloud.cci_secret": "c7n_huaweicloud.resources.cci.CCISecret",
-    "huaweicloud.vpcep-ep": "c7n_huaweicloud.resources.vpcep.VpcEndpoint"
+    "huaweicloud.vpcep-ep": "c7n_huaweicloud.resources.vpcep.VpcEndpoint",
+    "huaweicloud.cfw": "c7n_huaweicloud.resources.cfw.Cfw",
+    "huaweicloud.cfw-firewall": "c7n_huaweicloud.resources.cfw.Firewall",
+    "huaweicloud.cfw-eip": "c7n_huaweicloud.resources.cfw.Eip"
 }
