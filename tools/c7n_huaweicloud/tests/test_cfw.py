@@ -22,21 +22,12 @@ class CfwTest(BaseTest):
         resources = p.run()
         self.assertEqual(len(resources), 4)
 
-    # def test_cfw_eip_query(self):
-    #     factory = self.replay_flight_data("cfw_cfw_eip_query")
-    #     p = self.load_policy(
-    #         {"name": "list_eips", "resource": "huaweicloud.cfw-eip"},
-    #         session_factory=factory,
-    #     )
-    #     resources = p.run()
-    #     self.assertEqual(len(resources), 4)
-
     def test_cfw_eip_filter(self):
         factory = self.replay_flight_data("cfw_cfw_eip_filter")
         p = self.load_policy(
             {
                 "name": "protect-cfw-eip",
-                "resource": "huaweicloud.cfw-firewall",
+                "resource": "huaweicloud.cfw",
                 "filters": [{
                     "type": "eip-unprotected"
                 }]
@@ -45,6 +36,22 @@ class CfwTest(BaseTest):
         )
         resources = p.run()
         self.assertEqual(len(resources), 1)
+
+
+    def test_cfw_tags_filter(self):
+        factory = self.replay_flight_data("cfw_cfw_tagged_filter")
+        p = self.load_policy(
+            {
+                "name": "cfw_tagged",
+                "resource": "huaweicloud.cfw",
+                "filters": [{
+                    "type": "firewall-untagged"
+                }]
+            },
+            session_factory=factory,
+        )
+        resources = p.run()
+        self.assertEqual(len(resources), 3)
 
     def test_cfw_eip_protect_action(self):
         factory = self.replay_flight_data("cfw_eip_protect")
@@ -57,7 +64,29 @@ class CfwTest(BaseTest):
                 }],
                 "actions": [{
                 "type": "protect-eip",
-                "fwInstanceId": "d06dad70-b3be-4480-86bc-b3d139e9938b"
+                "fwInstanceId": "0cf6f7a8-a062-455c-a5ac-1f2af9272af6"
+            }]
+            },
+            session_factory=factory,
+        )
+        resources = p.run()
+        self.assertEqual(len(resources), 1)
+
+    def test_cfw_create_tags_action(self):
+        factory = self.replay_flight_data("cfw_create_tags")
+        p = self.load_policy(
+            {
+                "name": "cfw-create-tags",
+                "resource": "huaweicloud.cfw",
+                "filters": [{
+                    "type": "firewall-untagged",
+                }],
+                "actions": [{
+                "type": "create-tags",
+                "tag_infos": [
+                    {"fw_instance_ids":  ["f2bd4277-d2b4-40f3-b98d-75ecc51c68de", "d06dad70-b3be-4480-86bc-b3d139e9938b", "89d537d1-2ca9-4ec6-b822-8c524628e666"],
+                     "tags": [{"key": "env", "value": "dev"}]}
+                ]
             }]
             },
             session_factory=factory,
