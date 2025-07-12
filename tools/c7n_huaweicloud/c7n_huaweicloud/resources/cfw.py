@@ -6,7 +6,8 @@ import os
 from queue import Empty
 
 from huaweicloudsdkcfw.v1 import ChangeEipStatusRequest, EipOperateProtectReqIpInfos, EipOperateProtectReq, \
-    ListEipsRequest, ListFirewallDetailRequest, CreateTagRequest, CreateTagsDto
+    ListEipsRequest, ListFirewallDetailRequest, CreateTagRequest, CreateTagsDto, ShowAlarmConfigRequest, \
+    UpdateAlarmConfigRequest, UpdateAttackLogAlarmConfigDto, ListLogConfigRequest
 
 from tools.c7n_huaweicloud.c7n_huaweicloud.actions.base import HuaweiCloudBaseAction
 from tools.c7n_huaweicloud.c7n_huaweicloud.provider import resources
@@ -25,7 +26,7 @@ class Cfw(QueryResourceManager):
         # API info for enumerating resources: (operation name, result list field, pagination type)
         enum_spec = ('list_firewall_list', 'data.records', "cfw")
         # Resource unique identifier field name
-        id = 'fw_instance_name'
+        id = 'fw_instance_id'
 
 @resources.register('cfw-firewall')
 class Firewall(QueryResourceManager):
@@ -41,7 +42,7 @@ class EipUnprotected(Filter):
     schema = type_schema('eip-unprotected')
 
     def process(self, resources, event=None):
-        client = self.manager.get_resource_manager('cfw').get_client()
+        client = self.manager.get_client()
         protect_objects = set()
         object_ids = []
         for record in resources:
@@ -80,7 +81,7 @@ class FirewallUntagged(Filter):
     schema = type_schema('firewall-untagged')
 
     def process(self, resources, event=None):
-        client = self.manager.get_resource_manager('cfw').get_client()
+        client = self.manager.get_client()
         untagged_fw_instance_ids = []
         for record in resources:
             fw_instance_id = record.get('fw_instance_id')
@@ -97,7 +98,163 @@ class FirewallUntagged(Filter):
 
         return untagged_fw_instance_ids
 
+@Cfw.filter_registry.register("firewall-logged")
+class FirewallUnlogged(Filter):
+    schema = type_schema('firewall-logged')
 
+    def process(self, resources, event=None):
+        client = self.manager.get_client()
+        unlogged_fw_instance_ids = []
+        for record in resources:
+            fw_instance_id = record.get('fw_instance_id')
+            try:
+                list_log_config_request = ListLogConfigRequest(fw_instance_id=fw_instance_id)
+                list_log_config_response = client.list_log_config(list_log_config_request)
+            except exceptions.ClientRequestException as ex:
+                log.exception("Unable to filter unprotected eip."
+                              "RequestId: %s, Reason: %s." %
+                              (ex.request_id, ex.error_msg))
+            list_log_config_response_records = list_log_config_response.data
+            if list_log_config_response_records.lts_enable == 0:
+                unlogged_fw_instance_ids.append(fw_instance_id)
+
+        return unlogged_fw_instance_ids
+
+@Cfw.filter_registry.register("alarm-config-check")
+class FirewallUntagged(Filter):
+    schema = type_schema(
+        'alarm-config-check',
+        alarm_types={
+            'type': 'array',
+            'items': {
+                'type': 'string',
+                'enum': [
+                    'attack',
+                    'traffic threshold crossing',
+                    'EIP unprotected',
+                    'threat intelligence'
+                ]
+            },
+        }
+    )
+    def process(self, resources, event=None):
+        alarm_types=self.data.get('alarm_types')
+        if alarm_types is not None:
+            alarm_types = [self.ALARM_TYPE_MAPPING[a] for a in alarm_types]
+        client = self.manager.get_client()
+        fw_instance_ids = []
+        for record in resources:
+            fw_instance_id = record.get('fw_instance_id')
+            try:
+                show_alarm_config_request = ShowAlarmConfigRequest(fw_instance_id=fw_instance_id)
+                show_alarm_config_response = client.show_alarm_config(show_alarm_config_request)
+            except exceptions.ClientRequestException as ex:
+                log.exception("Unable to filter unprotected eip."
+                              "RequestId: %s, Reason: %s." %
+                              (ex.request_id, ex.error_msg))
+            alarm_configs = show_alarm_config_response.alarm_configs
+            for alarm_config in alarm_configs:
+                if alarm_config.alarm_type in alarm_types and alarm_config.enable_status == 0:
+                    fw_instance_ids.append(fw_instance_id)
+                    break
+
+        return fw_instance_ids
+
+    ALARM_TYPE_MAPPING = {
+        'attack': 0,
+        'traffic threshold crossing': 1,
+        'EIP unprotected': 2,
+        'threat intelligence': 3
+    }
+
+@Cfw.action_registry.register("update-firewall-alarm-config")
+class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
+    schema = type_schema(
+        'update-firewall-alarm-config',
+        required=["alarm_time_period","alarm_types","frequency_count","frequency_time","frequency_time","severity","topic_urn","username"],        # 必填参数
+        alarm_time_period={
+            'type': 'integer',
+            'enum': [0, 1],
+            'default': 0
+        },
+        alarm_types={
+            'type': 'array',
+            'items': {
+                'type': 'string',
+                'enum': [
+                    'attack',
+                    'traffic threshold crossing',
+                    'EIP unprotected',
+                    'threat intelligence'
+                ]
+            }
+        },
+        frequency_count={
+            'type': 'integer',
+            'minimum': 1,
+        },
+        frequency_time={
+            'type': 'integer',
+            'minimum': 1,
+        },
+        severity={
+            'type': 'string',
+            'enum': [0, 1, 2, 3, 4],
+            'default': 0
+        },
+        topic_urn={
+            'type': 'string',
+        },
+        # 可选参数
+        language={
+            'type': 'string',
+            'enum': ['zh-cn', 'en-us'],
+            'default': 'en-us'
+        },
+        username={
+            'type': 'string',
+        }
+    )
+
+    def process(self, resources):
+        client = self.manager.get_client()
+        for fwInstanceId in resources :
+            alarm_types = self.data.get('alarm_types')
+            if alarm_types is not None:
+                alarm_types = [self.ALARM_TYPE_MAPPING[a] for a in alarm_types]
+                for alarm_type in alarm_types:
+                    request = self.init_request(alarm_type,fwInstanceId)
+                    try:
+                        response = client.update_alarm_config(request)
+                    except exceptions.ClientRequestException as e:
+                        log.error(e.status_code, e.request_id, e.error_code, e.error_msg)
+                        raise
+        return json.dumps(response.to_dict())
+
+    def init_request(self, alarm_type,fwInstanceId):
+        request = UpdateAlarmConfigRequest(fw_instance_id=fwInstanceId)
+        request.body = UpdateAttackLogAlarmConfigDto(
+            alarm_time_period=self.data.get("alarm_time_period"),
+            alarm_type=alarm_type,
+            enable_status=1,
+            frequency_count=self.data.get("frequency_count"),
+            frequency_time=self.data.get("frequency_time"),
+            language=self.data.get("language"),
+            severity=self.data.get("severity"),
+            topic_urn=self.data.get("topic_urn"),
+            username=self.data.get("username"),
+        )
+        return request
+
+    def perform_action(self, resource):
+        return super().perform_action(resource)
+
+    ALARM_TYPE_MAPPING = {
+        'attack': 0,
+        'traffic threshold crossing': 1,
+        'EIP unprotected': 2,
+        'threat intelligence': 3
+    }
 
 @Cfw.action_registry.register("protect-eip")
 class ProtectEip(HuaweiCloudBaseAction):
@@ -176,3 +333,14 @@ class CreateTags(HuaweiCloudBaseAction):
 
     def perform_action(self, resource):
         return super().perform_action(resource)
+
+
+def log_and_catch(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except exceptions.ClientRequestException as e:
+            log.error(e.status_code, e.request_id, e.error_code, e.error_msg)
+            raise
+
+    return wrapper

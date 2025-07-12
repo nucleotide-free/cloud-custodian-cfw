@@ -53,12 +53,70 @@ class CfwTest(BaseTest):
         resources = p.run()
         self.assertEqual(len(resources), 3)
 
+    def test_cfw_logged_filter(self):
+        factory = self.replay_flight_data("cfw_logged_filter")
+        p = self.load_policy(
+            {
+                "name": "cfw_logged",
+                "resource": "huaweicloud.cfw",
+                "filters": [{
+                    "type": "firewall-logged"
+                }]
+            },
+            session_factory=factory,
+        )
+        resources = p.run()
+        self.assertEqual(len(resources), 0)
+
+    def test_cfw_alarm_config_filter(self):
+        factory = self.replay_flight_data("cfw_alarm_config_filter")
+        p = self.load_policy(
+            {
+                "name": "cfw_alarm_config",
+                "resource": "huaweicloud.cfw",
+                "filters": [{
+                    "type": "alarm-config-check",
+                    "alarm_types": ['attack','traffic threshold crossing','EIP unprotected','threat intelligence']
+                }]
+            },
+            session_factory=factory,
+        )
+        resources = p.run()
+        self.assertEqual(len(resources), 4)
+
+    def test_cfw_alarm_config_update_action(self):
+        factory = self.replay_flight_data("cfw_alarm_config_update_action")
+        p = self.load_policy(
+            {
+                "name": "cfw_alarm_config_update",
+                "resource": "huaweicloud.cfw",
+                "filters": [{
+                    "type": "alarm-config-check",
+                    "alarm_types": ['attack','traffic threshold crossing','EIP unprotected','threat intelligence']
+                }],
+                "actions": [{
+                "type": "update-firewall-alarm-config",
+                "alarm_types": ['attack'],
+                "alarm_time_period": 1,
+                "frequency_count": 10,
+                "frequency_time": 10,
+                "severity": "CRITICAL,HIGH,MEDIUM,LOW",
+                "topic_urn": "urn:smn:cn-east-3:28f403ddd3f141daa6e046e85cb15519:wt_test",
+                "username": "w3_sso_z30000215/h00934445",
+                }]
+            },
+            session_factory=factory,
+        )
+        resources = p.run()
+        self.assertEqual(len(resources), 4)
+
+
     def test_cfw_eip_protect_action(self):
         factory = self.replay_flight_data("cfw_eip_protect")
         p = self.load_policy(
             {
                 "name": "protect-cfw-eip",
-                "resource": "huaweicloud.cfw-firewall",
+                "resource": "huaweicloud.cfw",
                 "filters": [{
                     "type": "eip-unprotected",
                 }],
