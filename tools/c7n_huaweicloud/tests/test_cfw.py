@@ -119,7 +119,7 @@ class CfwTest(BaseTest):
                 "frequency_time": 10,
                 "severity": "CRITICAL,HIGH,MEDIUM,LOW",
                 "topic_urn": "urn:smn:cn-east-3:28f403ddd3f141daa6e046e85cb15519:wt_test",
-                "username": "w3_sso_z30000215/h00934445",
+                "username": "w3_sso_z30000215/h00934445"
                 }]
             },
             session_factory=factory,
@@ -140,4 +140,56 @@ class CfwTest(BaseTest):
             session_factory=factory,
         )
         resources = p.run()
+        self.assertEqual(len(resources), 1)
+
+    def test_cfw_logged_config_update_action(self):
+        factory = self.replay_flight_data("cfw_log_config_update_action")
+        p = self.load_policy(
+            {
+                "name": "cfw_logged",
+                "resource": "huaweicloud.cfw",
+                "filters": [{
+                    "type": "firewall-logged"
+                }],
+                "actions": [{
+                "type": "update-firewall-log-config",
+                 "lts_log_group_id": "9e2b6f24-09f3-4acc-a0a9-b9a2e26dffef"
+                }]
+            },
+            session_factory=factory,
+        )
+        resources = p.run()
         self.assertEqual(len(resources), 3)
+
+    def test_cfw_acl_filter(self):
+        factory = self.replay_flight_data("cfw_no_acl_filter")
+        p = self.load_policy(
+            {
+                "name": "cfw_acl",
+                "resource": "huaweicloud.cfw",
+                "filters": [{
+                    "type": "firewall-without-acl"
+                }]
+            },
+            session_factory=factory,
+        )
+        resources = p.run()
+        self.assertEqual(len(resources), 1)
+
+    def test_cfw_create_default_acl_rule_action(self):
+        factory = self.replay_flight_data("create_default_acl_rule_action")
+        p = self.load_policy(
+            {
+                "name": "cfw_acl_action",
+                "resource": "huaweicloud.cfw",
+                "filters": [{
+                    "type": "firewall-without-acl"
+                }],
+                "actions": [{
+                "type": "create-default-acl-rule"
+                }]
+            },
+            session_factory=factory,
+        )
+        resources = p.run()
+        self.assertEqual(len(resources), 1)

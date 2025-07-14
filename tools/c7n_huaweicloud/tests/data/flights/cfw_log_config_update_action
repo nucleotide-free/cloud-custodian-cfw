@@ -19,7 +19,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090904Z
+      - 20250714T091018Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: POST
@@ -49,18 +49,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:05 GMT
+      - Mon, 14 Jul 2025 09:10:19 GMT
       Server:
       - CloudWAF
       Set-Cookie:
-      - HWWAFSESTIME=1752484145012; path=/
-      - HWWAFSESID=61adc73f0a8ae00524; path=/
+      - HWWAFSESTIME=1752484219171; path=/
+      - HWWAFSESID=727f8731c0678021ec; path=/
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains;
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - db8d97a0a7c69c734e421f78c2dc2ca5
+      - 0783dab5557b22b351076968c796fc51
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -68,7 +68,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - db8d97a0a7c69c734e421f78c2dc2ca5
+      - 0783dab5557b22b351076968c796fc51
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -88,7 +88,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESTIME=1752484145012; HWWAFSESID=61adc73f0a8ae00524
+      - HWWAFSESTIME=1752484219171; HWWAFSESID=727f8731c0678021ec
       Host:
       - cfw.cn-east-3.myhuaweicloud.com
       User-Agent:
@@ -96,7 +96,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090905Z
+      - 20250714T091019Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: POST
@@ -118,7 +118,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:05 GMT
+      - Mon, 14 Jul 2025 09:10:19 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -126,7 +126,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - bc19306f4bf183ea490e2ccbb9dc0f8b
+      - bdb61b4de577c160cedf42a6497d9767
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -134,7 +134,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - bc19306f4bf183ea490e2ccbb9dc0f8b
+      - bdb61b4de577c160cedf42a6497d9767
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -158,7 +158,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090905Z
+      - 20250714T091019Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: GET
@@ -194,18 +194,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:06 GMT
+      - Mon, 14 Jul 2025 09:10:20 GMT
       Server:
       - CloudWAF
       Set-Cookie:
-      - HWWAFSESTIME=1752484145012; path=/
-      - HWWAFSESID=61adc79f0a8ae00524; path=/
+      - HWWAFSESTIME=1752484219851; path=/
+      - HWWAFSESID=8ab5d732fe8a91162f; path=/
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains;
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 3208a8fdd73a29c688c531cfe6cdf5e3
+      - 36a609d930b2cb66069eaebf5a645889
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -213,7 +213,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 3208a8fdd73a29c688c531cfe6cdf5e3
+      - 36a609d930b2cb66069eaebf5a645889
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -231,7 +231,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESTIME=1752484145012; HWWAFSESID=61adc79f0a8ae00524
+      - HWWAFSESTIME=1752484219851; HWWAFSESID=8ab5d732fe8a91162f
       Host:
       - cfw.cn-east-3.myhuaweicloud.com
       User-Agent:
@@ -239,7 +239,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090906Z
+      - 20250714T091020Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: GET
@@ -274,7 +274,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:06 GMT
+      - Mon, 14 Jul 2025 09:10:20 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -282,7 +282,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 5ca15cf6c19e0e59eb6524b0a13ac4d5
+      - cceb7987d8acde0398039621c12a577d
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -290,7 +290,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 5ca15cf6c19e0e59eb6524b0a13ac4d5
+      - cceb7987d8acde0398039621c12a577d
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -308,7 +308,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESTIME=1752484145012; HWWAFSESID=61adc79f0a8ae00524
+      - HWWAFSESTIME=1752484219851; HWWAFSESID=8ab5d732fe8a91162f
       Host:
       - cfw.cn-east-3.myhuaweicloud.com
       User-Agent:
@@ -316,7 +316,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090906Z
+      - 20250714T091020Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: GET
@@ -352,7 +352,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:07 GMT
+      - Mon, 14 Jul 2025 09:10:21 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -360,7 +360,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 8226442c9cadff0066526543adeb7146
+      - 800c2a24ed400e4ac15b83bc4a39fdf3
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -368,7 +368,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 8226442c9cadff0066526543adeb7146
+      - 800c2a24ed400e4ac15b83bc4a39fdf3
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -386,7 +386,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESTIME=1752484145012; HWWAFSESID=61adc79f0a8ae00524
+      - HWWAFSESTIME=1752484219851; HWWAFSESID=8ab5d732fe8a91162f
       Host:
       - cfw.cn-east-3.myhuaweicloud.com
       User-Agent:
@@ -394,7 +394,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090907Z
+      - 20250714T091021Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: GET
@@ -430,7 +430,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:07 GMT
+      - Mon, 14 Jul 2025 09:10:21 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -438,7 +438,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 3c14eb36d96a2e5727f7ab9b0ed1cc18
+      - ef4cce5cabf154f5df4b89fcd49dd0d3
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -446,7 +446,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 3c14eb36d96a2e5727f7ab9b0ed1cc18
+      - ef4cce5cabf154f5df4b89fcd49dd0d3
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -470,7 +470,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090945Z
+      - 20250714T091024Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: GET
@@ -493,18 +493,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:45 GMT
+      - Mon, 14 Jul 2025 09:10:24 GMT
       Server:
       - CloudWAF
       Set-Cookie:
-      - HWWAFSESID=5689173f8385293abd; path=/
-      - HWWAFSESTIME=1752484185828; path=/
+      - HWWAFSESTIME=1752484224262; path=/
+      - HWWAFSESID=4d77a76b36004c7f3d; path=/
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains;
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - e1800c137ee9ae09e3e8da0b017b751e
+      - f470dee72bbeab3ccd600d544e982a39
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -512,7 +512,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - e1800c137ee9ae09e3e8da0b017b751e
+      - f470dee72bbeab3ccd600d544e982a39
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -530,7 +530,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESID=5689173f8385293abd; HWWAFSESTIME=1752484185828
+      - HWWAFSESTIME=1752484224262; HWWAFSESID=4d77a76b36004c7f3d
       Host:
       - cfw.cn-east-3.myhuaweicloud.com
       User-Agent:
@@ -538,7 +538,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090945Z
+      - 20250714T091024Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: GET
@@ -559,7 +559,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:45 GMT
+      - Mon, 14 Jul 2025 09:10:24 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -567,7 +567,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - a4b29d52ad4267d9fd4606c232492b30
+      - 8abd0503719bd132a9f53679c296d615
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -575,7 +575,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - a4b29d52ad4267d9fd4606c232492b30
+      - 8abd0503719bd132a9f53679c296d615
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -593,7 +593,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESID=5689173f8385293abd; HWWAFSESTIME=1752484185828
+      - HWWAFSESTIME=1752484224262; HWWAFSESID=4d77a76b36004c7f3d
       Host:
       - cfw.cn-east-3.myhuaweicloud.com
       User-Agent:
@@ -601,7 +601,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090945Z
+      - 20250714T091024Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: GET
@@ -622,7 +622,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:46 GMT
+      - Mon, 14 Jul 2025 09:10:24 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -630,7 +630,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 10e8056cd084604cbadb31125086c042
+      - 44f024dd457dabfdafe933043336354b
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -638,7 +638,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 10e8056cd084604cbadb31125086c042
+      - 44f024dd457dabfdafe933043336354b
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -656,7 +656,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESID=5689173f8385293abd; HWWAFSESTIME=1752484185828
+      - HWWAFSESTIME=1752484224262; HWWAFSESID=4d77a76b36004c7f3d
       Host:
       - cfw.cn-east-3.myhuaweicloud.com
       User-Agent:
@@ -664,7 +664,7 @@ interactions:
       X-Project-Id:
       - 28f403ddd3f141daa6e046e85cb15519
       X-Sdk-Date:
-      - 20250714T090946Z
+      - 20250714T091024Z
       X-Security-Token:
       - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
     method: GET
@@ -683,7 +683,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 14 Jul 2025 09:09:46 GMT
+      - Mon, 14 Jul 2025 09:10:25 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -691,7 +691,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - e07a141269ab5e21ad74e9973e6333a2
+      - 5f354be92f9dd9fe78f41ed17caefcc2
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -699,10 +699,72 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - e07a141269ab5e21ad74e9973e6333a2
+      - 5f354be92f9dd9fe78f41ed17caefcc2
       X-XSS-Protection:
       - 1; mode=block;
     status:
       code: 200
+      message: ''
+- request:
+    body: '{"fw_instance_id": "89d537d1-2ca9-4ec6-b822-8c524628e666", "lts_enable":
+      1, "lts_log_group_id": "9e2b6f24-09f3-4acc-a0a9-b9a2e26dffef"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '135'
+      Content-Type:
+      - application/json
+      Host:
+      - cfw.cn-east-3.myhuaweicloud.com
+      User-Agent:
+      - huaweicloud-usdk-python/3.0
+      X-Project-Id:
+      - 28f403ddd3f141daa6e046e85cb15519
+      X-Sdk-Date:
+      - 20250714T091029Z
+      X-Security-Token:
+      - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
+    method: PUT
+    uri: https://proxycn2.huawei.com:8080/v1/28f403ddd3f141daa6e046e85cb15519/cfw/logs/configuration?fw_instance_id=89d537d1-2ca9-4ec6-b822-8c524628e666
+  response:
+    body:
+      string: '{"error_code":"CFW.00000500","error_msg":"Internal Server Error"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Jul 2025 09:10:29 GMT
+      Server:
+      - CloudWAF
+      Set-Cookie:
+      - HWWAFSESID=8c99573899fc248c5a; path=/
+      - HWWAFSESTIME=1752484229459; path=/
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains;
+      Transfer-Encoding:
+      - chunked
+      X-B3-TraceId:
+      - b3ae6e9b460f48df340af71de915f725
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - b3ae6e9b460f48df340af71de915f725
+      X-XSS-Protection:
+      - 1; mode=block;
+    status:
+      code: 500
       message: ''
 version: 1

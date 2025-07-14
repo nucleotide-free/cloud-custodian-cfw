@@ -1,0 +1,428 @@
+interactions:
+- request:
+    body: '{"limit": 1024, "offset": 0}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '28'
+      Content-Type:
+      - application/json
+      Host:
+      - cfw.ap-southeast-3.myhuaweicloud.com
+      User-Agent:
+      - huaweicloud-usdk-python/3.0
+      X-Project-Id:
+      - 08990bb558904dd8ba065ba082af538d
+      X-Sdk-Date:
+      - 20250714T095934Z
+      X-Security-Token:
+      - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
+    method: POST
+    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewalls/list
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA+xRPYsbMRT8L6p3QfuhXcldSBVIEQKpQhD6eGsrrKVF0vo4jPuDg0DKkCakSpkm
+        ZX6O7/7Gae2zWRNDmpRpltW8mXm8mS3SIgq02KLerE1EiwKXdYZc1wVIL5yhwbuPoCI3Gi0Qpoxh
+        KQmhDNdaUylwQ9KHlqIjFdUoQx6U8zqgxfst6m64sSEKq+CoByoprVmXS0IhryVluawJ5FozDIoq
+        Jkt28Ahu9CdRkRAr1jD9tgS3La6qljYkwfMFz5SX796+zh8//Xz8/fnFm1cP9z8eft3v777u777t
+        v39JErAR/OBNAH55WpqtBI+3Q3IpMqRWwi+Br52GQw4B/MakNUcCnoyWxp7eSdD1YuP8FOUGfDDO
+        HlAwA1dutCnMMok2gzo/MySF1TdGx9Vx2LslD9F5sTxu0NCJsY985kFm8KXXCZ15zsmX3rt0TxRx
+        TDWVu+xKUYKWkqiK5gKgzmvR0JwWtMkVZqwltKFa/q2ooqnqsqRt2/4v6t8U9SFD0UXRH0pLGQRu
+        dbqjE32ADJnAwzgMzk/WwSh+vu4KYbydQu0gTIzJMfrxkjK4EAcxJf7HaLQmGZwGYwr8PIIhXBHE
+        9TO6ewIAAP//AwCELx4acAQAAA==
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Jul 2025 09:59:35 GMT
+      Server:
+      - CloudWAF
+      Set-Cookie:
+      - HWWAFSESTIME=1752487175258; path=/
+      - HWWAFSESID=1bbc673b56e9f4ec79; path=/
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains;
+      Transfer-Encoding:
+      - chunked
+      X-B3-TraceId:
+      - c45d9186009e77634aced6fce1bfc0ea
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - c45d9186009e77634aced6fce1bfc0ea
+      X-XSS-Protection:
+      - 1; mode=block;
+    status:
+      code: 200
+      message: ''
+- request:
+    body: '{"limit": 1024, "offset": 1024}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '31'
+      Content-Type:
+      - application/json
+      Cookie:
+      - HWWAFSESTIME=1752487175258; HWWAFSESID=1bbc673b56e9f4ec79
+      Host:
+      - cfw.ap-southeast-3.myhuaweicloud.com
+      User-Agent:
+      - huaweicloud-usdk-python/3.0
+      X-Project-Id:
+      - 08990bb558904dd8ba065ba082af538d
+      X-Sdk-Date:
+      - 20250714T095935Z
+      X-Security-Token:
+      - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
+    method: POST
+    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewalls/list
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA2yO0QqDMAxF/yXPfeicjtpfGaNE27IOtaVJB0P89ylswpgvgeScXO4MFhlBzzCE
+        MTDok6xqAdF7cvuWcny4nk2woEGqtpVd1zSqlbW1qkN5adahKvTNWVkQkF0fsyXQ15sAjowD6GoR
+        cEcyk82gPQ7kBAQyVFKKmU2HFHrzdJlCnA6F8jJrD+9oM7ZEzuVXSZE44VbyD5UprAFfUMjlHblE
+        Bw88fq7LGwAA//8DAMaBBqYiAQAA
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Jul 2025 09:59:36 GMT
+      Server:
+      - CloudWAF
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains;
+      Transfer-Encoding:
+      - chunked
+      X-B3-TraceId:
+      - 86b2e54284f3d1422510c18943a7a96d
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 86b2e54284f3d1422510c18943a7a96d
+      X-XSS-Protection:
+      - 1; mode=block;
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Host:
+      - cfw.ap-southeast-3.myhuaweicloud.com
+      User-Agent:
+      - huaweicloud-usdk-python/3.0
+      X-Project-Id:
+      - 08990bb558904dd8ba065ba082af538d
+      X-Sdk-Date:
+      - 20250714T095936Z
+      X-Security-Token:
+      - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
+    method: GET
+    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewall/exist?fw_instance_id=e8b8849f-b58e-4b89-b45e-dd90ec8c9b29&limit=1024&offset=0&service_type=0
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4xVT4/jNBT/LrnSSJlOO0l7Q3tASCAhFk4IWY79kppxbGM7KWU095VWQuKIuCBO
+        HLlw3I8zu1+D5zhJU5KV6CFN3v/3+z0/PyWcepocnxIpGuGT41223W0SXVUO8CvbJBaYttwlx++e
+        kupMhHKeKgZE8OSYQFEWxe5QpeW+gHRXFoe03O0h5fyQASvYodwekhDD6daOTncoUbSB8JrvszzP
+        7u/z4mGP4nmCweTVt19/kX745e8P73799KvP37/96/0/b1/e/P7y5o+XP39DF1AerLHCATFW/wDM
+        xywZ6k6U+IvBKHebhJ2orYE0mkPflwPbCUwTDbIQqBZq/EaHStJO2wBNB9YJrXopCEOYbhWCs0Wn
+        zrDpc5OUVPGz4P4UlVLXxHltaR0zcKhoKz2ZxdjPxLexRuks5tz4v7GD8016lLUOOLGthFlYrz2V
+        t8IMf89XkgLV328SBNMHMHUZMI38x/eI74GXFCrG0wLKLN1t8zI9ZNsi3TKWP7C7fZnnW6RgcFny
+        nQeCBvCfMR+y7lvX1ygc0ZKTSlg4UymnkUiOFZUO0LY1RlssxHQPC2FrJbpKnAqh6uTobYvKCjC6
+        RXZ1XUsIpGKS0YMqL0gnbEgfzWdKx7yZcsydjJGCUd8Pxuj1Oipfg4sDs+LGEH2oUYv4q0pMFc5s
+        ZIB7IRVmTQpnwiw2BwQs8aCwl4CXQdBDjjjuyzK4on4lWpiiWWOE64aKa3/GxcmRwq15M2p6kHGS
+        +hEV6pGAOkXqorXUqg6NK6xvJcK1m1CJgZ7D/9PPNCvlxVC3BpQ/hcDE09pNAaiktvk4D5XUZ4LR
+        NBNYEicnfdO20n4ynTacBd72pV6TIOMN4iGGo7SSiPIugMQDxz3CKzYDuCuamxEogVr8W0C28PKW
+        VpVgw1HBzKSUlD1+hFrXzKZ8khrsFircmnxFOae/wS19hX1eBTNhbf90WVPK+/q8Jo9TiT16kFLU
+        MF8N85rZCclYBTPsCEyLva9pnSxRK7oAqQJ/1vaROKiHJhbmVeh0RY6c4O4yK5of9SoYcUooGxbz
+        wm3sm2MhorqsWIRTw5Wbzu0yR5jG2up23GnPvZZ2VEha4tHW5dQiPh2CMdyT436OugrtcV6NxlVx
+        GW8SvHK8aID8rFVY9p99+c0nWXHMwqKfVYDjOtvbYfX3dxLerrGW0a5sLz1HcZcGg5D6+V8AAAD/
+        /wMA93MHPLIIAAA=
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Jul 2025 09:59:37 GMT
+      Server:
+      - CloudWAF
+      Set-Cookie:
+      - HWWAFSESTIME=1752487176563; path=/
+      - HWWAFSESID=3a8c0735498a39ac08; path=/
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains;
+      Transfer-Encoding:
+      - chunked
+      X-B3-TraceId:
+      - 7510f1d13d76b5b48ba85df086074385
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 7510f1d13d76b5b48ba85df086074385
+      X-XSS-Protection:
+      - 1; mode=block;
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - HWWAFSESTIME=1752487176563; HWWAFSESID=3a8c0735498a39ac08
+      Host:
+      - cfw.ap-southeast-3.myhuaweicloud.com
+      User-Agent:
+      - huaweicloud-usdk-python/3.0
+      X-Project-Id:
+      - 08990bb558904dd8ba065ba082af538d
+      X-Sdk-Date:
+      - 20250714T095937Z
+      X-Security-Token:
+      - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
+    method: GET
+    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewall/exist?fw_instance_id=a82b5c38-aee4-4a68-8186-c09975868db9&limit=1024&offset=0&service_type=0
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA4xVva7kNBR+l7RMpMx/7nRoC4QEEmKhQshy7JOMuY5tbCfDcHX7lVZCokQ0iIqS
+        hnIf5+6+BsdxksmQrMQUmeT8n+87Pn5KOPU0OT0lUtTCJ6d1ttmtEl2WDvArWyUWmLbcJafvnpLy
+        QoRynioGRPDklNB8U+zZNk8pwC7d0UOe5uv8kLLs4eG4zw85Lx6SEMPpxg5Oa5QoWkN4Pe7Xh+1u
+        s8mPxyOKpwl6k1fffv1F+uGXvz+8+/XTrz5///av9/+8fXnz+8ubP17+/A1dQHmwxgoHxFj9AzAf
+        s2SoO1PirwajrFcJO1NbAak1h64vB7YVmCYaZCFQJdTwjQ6lpK22AZoWrBNadVIQhjDdKARng06t
+        YePnKimo4hfB/Tkqpa6I89rSKmbgUNJGejKJsZ+I72MN0knMqfF/Ywfnu/QoaxxwYhsJk7Beeyrv
+        hRn+nm8kBaq/XyUIpg9g6iJgGvmP7xFfONB1RnebtNgW+3S3y/dpfszKdJs9wPpY7PZ8HxjtXeZ8
+        52EMevCfMR+y7hvX1Sgc0ZKTUli4UCnHkUhOJZUO0LYxRlssxLSHmbCxEl0lToVQVXLytkFlCRjd
+        Iru6qiQEUjHJ4EGVF6QVNqSP5hOlY96MOaZOxkjBqO8GY/B6HZWvwcWBWXBjiD5UqEX8VSnGCic2
+        MsA9kwqzJIULYRabAwKWeFDYS8DLIOghRxz3eRlcUb8QLUzRpDHCdU3FrT/j4uRI4Za8GTUdyDhJ
+        3YgK9UhAnSN10VpqVYXGFda3EOHWTajEQMfh/+lnnJXiaqhbAsqfQ2DiaeXGAFRSW3+ch1LqC8Fo
+        mgksiZOzvmtbaT+ajhvOAm+6Um9JkPEa8RD9UVpIRHkbQOKB4w7hBZse3AXN3QgUQC3+zSCbeXlL
+        y1Kw/qhgZlJIyh4/Qq2rJ1M+Sg12CyVuTb6gnNJf45a+wT6tgpmwtn+6LinltrosyeNUYo8epBQV
+        TFfDtGZ2RjIWwQw7AtNi70taJwvUijZAqsBftH0kDqq+iZl5GTpdkCMnuLvMguZHvQhGnBLK+sU8
+        cxv65liIKK8LFuHUcOXGczvPEaaxsroZdtpzp6UtFZIWeLR1MbaIT4dg9PfksJ+jrkR7nFejcVVc
+        h5sErxwvaiA/axWW/WdffvNJlp+ycBNPKsBxneztsPq7Owlv11jLYFc0146juEuDQUj9/C8AAAD/
+        /wMA0OajnLIIAAA=
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Jul 2025 09:59:38 GMT
+      Server:
+      - CloudWAF
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains;
+      Transfer-Encoding:
+      - chunked
+      X-B3-TraceId:
+      - e380aab7dfcf79ec747b63e552110242
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - e380aab7dfcf79ec747b63e552110242
+      X-XSS-Protection:
+      - 1; mode=block;
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Host:
+      - cfw.ap-southeast-3.myhuaweicloud.com
+      User-Agent:
+      - huaweicloud-usdk-python/3.0
+      X-Project-Id:
+      - 08990bb558904dd8ba065ba082af538d
+      X-Sdk-Date:
+      - 20250714T095938Z
+      X-Security-Token:
+      - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
+    method: GET
+    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/acl-rules?limit=1024&object_id=9dbaefcd-8eb0-427b-9028-2cc76c15b772&offset=0
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAAxyMQQrDIBQF7/LWCkaSmniVUkS/X7DYWoyuQu7etNthZg5E3z3sgZJfucNOSs8C
+        NTyZussRFlsMnhNFuXJQctYmyE3pVWoic6NpCcZoXElKO18DJdCYaos77P0h0Gv35Y/Hx7VReHdU
+        x/tnnucXAAD//wMAxT3VZn8AAAA=
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Jul 2025 09:59:38 GMT
+      Server:
+      - CloudWAF
+      Set-Cookie:
+      - HWWAFSESTIME=1752487176563; path=/
+      - HWWAFSESID=3a8c0765498a39ac08; path=/
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains;
+      Transfer-Encoding:
+      - chunked
+      X-B3-TraceId:
+      - 1209b1bc81da80bfe8c0fde425901cb3
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 1209b1bc81da80bfe8c0fde425901cb3
+      X-XSS-Protection:
+      - 1; mode=block;
+    status:
+      code: 200
+      message: ''
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Cookie:
+      - HWWAFSESTIME=1752487176563; HWWAFSESID=3a8c0765498a39ac08
+      Host:
+      - cfw.ap-southeast-3.myhuaweicloud.com
+      User-Agent:
+      - huaweicloud-usdk-python/3.0
+      X-Project-Id:
+      - 08990bb558904dd8ba065ba082af538d
+      X-Sdk-Date:
+      - 20250714T095939Z
+      X-Security-Token:
+      - ggpjbi1ub3J0aC00Tzt7ImFjY2VzcyI6IkhTVDNGQTdCVFAyWEpSSThPM0pWIiwiaXNzdWVkX2F0IjoxNzUyNDU0MTQzMzc3LCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNTQwNTQzMzc3LCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fXW5MWlG6ev4rHfw4ujXXgfBT4062NjvGXASDvtwdFAMJhTrNRhBLSp0NCVq7XBO2KfaZTsnfQ0NAi6EXRP5L1HZ86qjai6ytgyMoCx1DPM4vGmro0v0flnRY16hJwJdD4Ps8XU3kMRgiTRb1jjcEUc8v01ut4yAc6KCes28D5cIu0iFvbnvPf51f7GeyXyyiwcKLfpWGsNiWB-7ZaNHh30_HKmMxPAWy9kUN_sdbF3jkkVNC1lLzCM1FvopLIAR5Qv33wqtEat6p9MHSVYwnaUnNpJRb7CNex8RGIiFp_gI5yuOeEugJnGbgBYwI0JH1feOROCx-mxqvX7Z3ihEAUE=
+    method: GET
+    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/acl-rules?limit=1024&object_id=e6a10a42-b3b5-4485-870f-309e17b45d57&offset=0
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA8RUTa/TMBD8K097JS62Y+frxpUDF04IocixnSej1I5shwpV+e/Y6SsvVRGU00tu
+        m5nd2dlRzqBEFNCdYTJHE6EjmLIC3PBdy9gbBR3oShAsGEVDOXDEWMNRU+MRlbjVpB4YV7yGRBnH
+        oFMDXIDX0nkVoPt6BiGjcbaPP2e9fRNKeR3CrjDPk5EiozIDPnz6At9uyx+Ds5+jN/Y5ycnfC5Be
+        i6hVn9SnNkAx5QjXCLMnSjpCOs6e3uEG4wQ9OmVG8xhW6RCN3aZmT+7EKncUxvbXuhXH3PF0Oh0G
+        YdRykO6YulzgdE14k7y4dCMFTCLE3s062WE24t+kTM4+99JZmw+hrRimi4SXmZTSBPLLpC9XGvRQ
+        KoUVwqJuEVNqREIrjkbOG1a2TVtVJF/JK+03RttyjFO/oP0PI3VeN2/fz86nKwJBFeclT5TZu+ik
+        m6CrEtotXup70ItD6xWxcy/h8GF73+e97jzdUaOIS9isuhQhE9L80eTlzxCn0Bsb5quneF2LN4sY
+        /Y+I7bB/jtjjJu0ihR+J1G70PyJFSE7Ia6RYzXTFmgqxmg6IcdygpikZIkJi3nJFJRtuIkXw9txk
+        6jU96PdZ3yAm6dzRRZFk0AKWuc9bhuTFYvMva11/AQAA//8DAGXdhSMIBQAA
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 14 Jul 2025 09:59:39 GMT
+      Server:
+      - CloudWAF
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains;
+      Transfer-Encoding:
+      - chunked
+      X-B3-TraceId:
+      - 4b981f7aae25f954668a09a3b7cc1532
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Request-Id:
+      - 4b981f7aae25f954668a09a3b7cc1532
+      X-XSS-Protection:
+      - 1; mode=block;
+    status:
+      code: 200
+      message: ''
+version: 1
