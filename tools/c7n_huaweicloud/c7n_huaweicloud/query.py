@@ -90,8 +90,6 @@ class ResourceQuery:
             resources = self._pagination_cdn(m, enum_op, path)
         elif pagination == "cfw":
             resources = self._pagination_cfw(m, enum_op, path)
-        elif pagination == "cfw-detail":
-            resources = self._pagination_cfw_detail(m, enum_op, path)
         else:
             log.exception(f"Unsupported pagination type: {pagination}")
             sys.exit(1)
@@ -365,41 +363,6 @@ class ResourceQuery:
             offset += 1024
             resources = resources + res
         return resources
-
-
-    def _pagination_cfw_detail(self, m, enum_op, path):
-        session = local_session(self.session_factory)
-        client = session.client(m.service)
-
-        offset = 0
-        resources = []
-        while 1:
-            request = session.request(m.service)
-            request.limit = 1024
-            request.offset = offset
-            request.service_type = 0
-            response = self._invoke_client_enum(client, enum_op, request)
-            res = jmespath.search(
-                path,
-                eval(
-                    str(response)
-                    .replace("null", "None")
-                    .replace("false", "False")
-                    .replace("true", "True")
-                ),
-            )
-
-            if not res:
-                return resources
-
-            # replace id with the specified one
-            for data in res:
-                data["id"] = data[m.id]
-
-            resources = resources + res
-            offset += 1024
-        return resources
-
 
     def _pagination_ims(self, m, enum_op, path):
         session = local_session(self.session_factory)

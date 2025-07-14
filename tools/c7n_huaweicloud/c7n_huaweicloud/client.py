@@ -570,7 +570,7 @@ class Session:
                 .with_region(CceRegion.value_of(self.region))
                 .build()
             )
-        elif service in ["cfw", "cfw-detail", "cfw-eip"]:
+        elif service in ["cfw"]:
             client = (
                 CfwClient.new_builder()
                 .with_credentials(credentials)
@@ -749,10 +749,6 @@ class Session:
             request = ListReleasesRequest()
         elif service == 'cfw':
             request = ListFirewallListRequest()
-        elif service == 'cfw-detail':
-            request = ListFirewallDetailRequest()
-        elif service == 'cfw-eip':
-            request = ListEipsRequest()
         return request
 
 
