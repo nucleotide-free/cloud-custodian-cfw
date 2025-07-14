@@ -12,7 +12,6 @@ import os
 import pdb
 import sys
 import traceback
-import debugpy
 from datetime import datetime
 from dateutil.parser import parse as date_parse
 from c7n.commands import LoadSessionPolicyJson

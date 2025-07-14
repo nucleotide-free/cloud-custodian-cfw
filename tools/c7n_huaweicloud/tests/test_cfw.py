@@ -6,8 +6,9 @@ class CfwTest(BaseTest):
 
     def test_firewall_list_query(self):
         factory = self.replay_flight_data("cfw_query")
-        p = self.load_policy(
-            {"name": "list_firewall_list", "resource": "huaweicloud.cfw"},
+        p = self.load_policy({
+            "name": "query_cloud_firewall",
+            "resource": "huaweicloud.cfw"},
             session_factory=factory,
         )
         resources = p.run()

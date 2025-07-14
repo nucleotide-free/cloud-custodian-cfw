@@ -9,6 +9,7 @@ from huaweicloudsdkcfw.v1 import ChangeEipStatusRequest, EipOperateProtectReqIpI
     ListEipsRequest, ListFirewallDetailRequest, CreateTagRequest, CreateTagsDto, ShowAlarmConfigRequest, \
     UpdateAlarmConfigRequest, UpdateAttackLogAlarmConfigDto, ListLogConfigRequest
 
+from c7n.utils import local_session
 from tools.c7n_huaweicloud.c7n_huaweicloud.actions.base import HuaweiCloudBaseAction
 from tools.c7n_huaweicloud.c7n_huaweicloud.provider import resources
 from tools.c7n_huaweicloud.c7n_huaweicloud.query import QueryResourceManager, TypeInfo
@@ -20,63 +21,110 @@ log = logging.getLogger('custodian.huaweicloud.cfw')
 
 
 @resources.register('cfw')
-class Cfw(QueryResourceManager):
+class CloudFirewall(QueryResourceManager):
+    """Huawei Cloud Firewall
+
+    :example:
+    Define a simple policy to get all cloud firewall:
+
+    .. code-block:: yaml
+
+        policies:
+          - name: list-cloud-firewall
+            resource: huaweicloud.cfw
+    """
     class resource_type(TypeInfo):
         service = 'cfw'
-        # API info for enumerating resources: (operation name, result list field, pagination type)
         enum_spec = ('list_firewall_list', 'data.records', "cfw")
-        # Resource unique identifier field name
         id = 'fw_instance_id'
+        tag_resource_type = 'cfw-cfw'
 
-@resources.register('cfw-firewall')
-class Firewall(QueryResourceManager):
-    class resource_type(TypeInfo):
-        service = 'cfw-detail'
-        # API info for enumerating resources: (operation name, result list field, pagination type)
-        enum_spec = ('list_firewall_detail', 'data.records', "cfw-detail")
-        # Resource unique identifier field name
-        id = 'fw_instance_id'
+    def augment(self, resources):
+        """Enhance resource data, add extra information"""
+        fw_instance_ids = [resource.get('fw_instance_id') for resource in resources]
+        fw_instances = []
 
-@Cfw.filter_registry.register("eip-unprotected")
-class EipUnprotected(Filter):
+        # Query detail for fw_instance
+        session = local_session(self.session_factory)
+        client = session.client('cfw')
+
+        for fw_instance_id in fw_instance_ids:
+            try:
+                request = ListFirewallDetailRequest(
+                    fw_instance_id=fw_instance_id,
+                    limit=1024,
+                    offset=0,
+                    service_type=0
+                )
+
+                # Call the API to get firewall detail
+                response = client.list_firewall_detail(request)
+                fw_instances.append(response.to_dict())
+            except exceptions.ClientRequestException as e:
+                log.error(
+                    f"[resource]- [augment]- The resource:[cfw] with id:[{fw_instance_id}] is failed. cause:{str(e)}")
+        return fw_instances
+
+
+@CloudFirewall.filter_registry.register("eip-unprotected")
+class UnprotectedEipFilter(Filter):
+    """Filter certificate authorities by CA status
+
+        Statuses include: ACTIVED (activated), DISABLED (disabled), PENDING (pending activation),
+        DELETED (scheduled for deletion), EXPIRED (expired)
+
+        :example:
+
+        .. code-block:: yaml
+
+            policies:
+              - name: find-disabled-cas
+                resource: huaweicloud.ccm-private-ca
+                filters:
+                  - type: status
+                    value: DISABLED
+        """
     schema = type_schema('eip-unprotected')
 
     def process(self, resources, event=None):
         client = self.manager.get_client()
-        protect_objects = set()
-        object_ids = []
-        for record in resources:
-            fw_instance_id = record.get('fw_instance_id')
+        object_ids = set()
+        unprotected_object_ids = []
+
+        # Get object ids
+        for r in resources:
+            firewall = r.get('data').get('records')[0]
+            protect_objects = firewall.get('protect_objects')
+            if protect_objects is not None:
+                for protect_object in protect_objects:
+                    object_id = protect_object.get('object_id')
+                    # protect type: 0 (north-south), 1 (east-west) , only filter north-south protect object
+                    type = protect_object.get('type')
+                    if object_id is not None and type == 0:
+                        object_ids.add(object_id)
+
+        for object_id in object_ids:
             try:
-                list_firewall_detail_request = ListFirewallDetailRequest(fw_instance_id=fw_instance_id, limit=1024, offset=0, service_type=0)
-                list_firewall_detail_response = client.list_firewall_detail(list_firewall_detail_request)
-            except exceptions.ClientRequestException as ex:
-                log.exception("Unable to filter unprotected eip."
-                              "RequestId: %s, Reason: %s." %
-                              (ex.request_id, ex.error_msg))
-            list_firewall_detail_response_records = list_firewall_detail_response.data.records
-            if list_firewall_detail_response_records is not None:
-                for protect_object in list_firewall_detail_response_records.get('protect_objects'):
-                    protect_objects.add(protect_object)
+                # Call the API to get eips
+                request = ListEipsRequest(
+                    object_id=object_id,
+                    limit=1024,
+                    offset=0
+                )
+                response = client.list_eips(request)
+                log.debug("[filters]- The filter:[eip-unprotected]  query the service:[GET /v1/{project_id}/eips/protect]  is success. ")
+            except exceptions.ClientRequestException as e:
+                log.error(
+                    f"[filters]- The filter:[eip-unprotected] with id:[{resources.id}] is failed. cause:{str(e)}")
 
-        for protect_object in protect_objects:
-            if protect_object.type == 0:
-                object_id = protect_object.get('object_id')
-                try:
-                    request = ListEipsRequest(object_id=object_id, limit=1024, offset=0)
-                    response = client.list_eips(request)
-                except exceptions.ClientRequestException as ex:
-                    log.exception("Unable to filter unprotected eip."
-                                  "RequestId: %s, Reason: %s." %
-                                  (ex.request_id, ex.error_msg))
-                if response.data.records is not None:
-                    for r in response.data.records:
-                        if r.status == 1:
-                            object_ids.append(object_id)
+        # get eip protect status,protection status: 0 (enabled), or 1 (disabled).
+        if response.data.records is not None:
+            for r in response.data.records:
+                if r.status == 1:
+                    unprotected_object_ids.append(object_id)
+        return unprotected_object_ids
 
-        return object_ids
-
-@Cfw.filter_registry.register("firewall-untagged")
+@CloudFirewall.filter_registry.register("firewall-untagged")
 class FirewallUntagged(Filter):
     schema = type_schema('firewall-untagged')
 
@@ -98,7 +146,7 @@ class FirewallUntagged(Filter):
 
         return untagged_fw_instance_ids
 
-@Cfw.filter_registry.register("firewall-logged")
+@CloudFirewall.filter_registry.register("firewall-logged")
 class FirewallUnlogged(Filter):
     schema = type_schema('firewall-logged')
 
@@ -120,7 +168,7 @@ class FirewallUnlogged(Filter):
 
         return unlogged_fw_instance_ids
 
-@Cfw.filter_registry.register("alarm-config-check")
+@CloudFirewall.filter_registry.register("alarm-config-check")
 class FirewallUntagged(Filter):
     schema = type_schema(
         'alarm-config-check',
@@ -167,7 +215,7 @@ class FirewallUntagged(Filter):
         'threat intelligence': 3
     }
 
-@Cfw.action_registry.register("update-firewall-alarm-config")
+@CloudFirewall.action_registry.register("update-firewall-alarm-config")
 class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
     schema = type_schema(
         'update-firewall-alarm-config',
@@ -256,7 +304,7 @@ class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
         'threat intelligence': 3
     }
 
-@Cfw.action_registry.register("protect-eip")
+@CloudFirewall.action_registry.register("protect-eip")
 class ProtectEip(HuaweiCloudBaseAction):
     schema = type_schema(
         'protect-eip',
@@ -296,7 +344,7 @@ class ProtectEip(HuaweiCloudBaseAction):
     def perform_action(self, resource):
         return super().perform_action(resource)
 
-@Cfw.action_registry.register("create-tags")
+@CloudFirewall.action_registry.register("create-tags")
 class CreateTags(HuaweiCloudBaseAction):
     schema = type_schema(
         'create-tags',
