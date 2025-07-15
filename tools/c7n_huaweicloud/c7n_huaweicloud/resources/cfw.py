@@ -21,7 +21,7 @@ from huaweicloudsdkcore.exceptions import exceptions
 from c7n.filters.core import type_schema, Filter
 
 log = logging.getLogger('custodian.huaweicloud.cfw')
-
+DEFAULT_LIMIT_SIZE = 200
 
 @resources.register('cfw')
 class CloudFirewall(QueryResourceManager):
@@ -56,7 +56,7 @@ class CloudFirewall(QueryResourceManager):
             try:
                 request = ListFirewallDetailRequest(
                     fw_instance_id=fw_instance_id,
-                    limit=1024,
+                    limit=DEFAULT_LIMIT_SIZE,
                     offset=0,
                     service_type=0
                 )
@@ -69,7 +69,7 @@ class CloudFirewall(QueryResourceManager):
                     f"[resource]- [augment]- The resource:[cfw] with id:[{fw_instance_id}] is failed. cause:{str(e)}")
         return fw_instances
 
-@CloudFirewall.filter_registry.register("eip-unprotected")
+@CloudFirewall.filter_registry.register("check-unprotected-eip")
 class UnprotectedEipFilter(Filter):
     """Filter EIP without protection .
 
@@ -81,9 +81,9 @@ class UnprotectedEipFilter(Filter):
               - name: query-eip-without-protection.
                 resource: huaweicloud.cfw
                 filters:
-                  - type: eip-unprotected
+                  - type: check-unprotected-eip
         """
-    schema = type_schema('eip-unprotected')
+    schema = type_schema('check-unprotected-eip')
 
     def process(self, resources, event=None):
         client = self.manager.get_client()
@@ -108,15 +108,15 @@ class UnprotectedEipFilter(Filter):
                 # Call the API to get eips
                 request = ListEipsRequest(
                     object_id=object_id,
-                    limit=1024,
+                    limit=DEFAULT_LIMIT_SIZE,
                     offset=0
                 )
                 response = client.list_eips(request)
-                log.info("[filters]-{eip-unprotected} "
+                log.info("[filters]-{check-unprotected-eip} "
                          "The resource:[cfw] with request:[%s] "
                          "query eips is success.", request)
             except exceptions.ClientRequestException as e:
-                log.error("[filters]-{instance-imds-token} "
+                log.error("[filters]-{check-unprotected-eip} "
                           "The resource:[cfw] with request:[%s] "
                           "query eips is failed, cause: "
                           "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
@@ -141,7 +141,7 @@ class ProtectEip(HuaweiCloudBaseAction):
            - name: cfw-enable-eip-protection
              resource: huaweicloud.cfw
              filters:
-               - type: eip-unprotected
+               - type: check-unprotected-eip
              actions:
                - type: protect-eip
                  fwInstanceId: your cloud firewall instance id
@@ -164,7 +164,7 @@ class ProtectEip(HuaweiCloudBaseAction):
             fw_instance_id = self.data.get("fwInstanceId")
             request = ListFirewallDetailRequest(
                 fw_instance_id=fw_instance_id,
-                limit=1024,
+                limit=DEFAULT_LIMIT_SIZE,
                 offset=0,
                 service_type=0
             )
@@ -217,7 +217,7 @@ class ProtectEip(HuaweiCloudBaseAction):
     def perform_action(self, resource):
         return super().perform_action(resource)
 
-@CloudFirewall.filter_registry.register("firewall-untagged")
+@CloudFirewall.filter_registry.register("check-untagged-firewall")
 class UntaggedFirewallFilter(Filter):
     """Filter firewall without tag .
 
@@ -229,9 +229,9 @@ class UntaggedFirewallFilter(Filter):
               - name: query-firewall-without-tag.
                 resource: huaweicloud.cfw
                 filters:
-                  - type: firewall-untagged
+                  - type: check-untagged-firewall
         """
-    schema = type_schema('firewall-untagged')
+    schema = type_schema('check-untagged-firewall')
 
     def process(self, resources, event=None):
         untagged_fw_instance_ids = []
@@ -261,50 +261,45 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
      .. code-block:: yaml
 
          policies:
-           - name: cfw-create-tags
-             resource: huaweicloud.cfw
-             filters:
-               - type: firewall-untagged
-             actions:
-                - type: create-tags
-                    default_tags:
-                        - tags:
-                            - key: "Environment"
-                              value: "dev"
-                    tag_infos:
-                        - fw_instance_ids: ["fw-001", "fw-002", "fw-003"]
-                          tags:
-                              - key: "Environment"
-                                value: "Production"
-                              - key: "Criticality"
-                                value: "High"
-                          - fw_instance_ids: ["fw-004", "fw-005"]
-                            tags:
-                              - key: "Environment"
-                                value: "Staging"
+          - name: cfw-create-tags
+            resource: huaweicloud.cfw
+            filters:
+              - type: check-untagged-firewall
+            actions:
+              - type: create-tags
+                default_tags:
+                  - key: "Environment"
+                    value: "dev"
+                tag_infos:
+                  - fw_instance_ids: ["************-a68-8186-c***********9"]
+                    tags:
+                      - key: "Environment"
+                        value: "Production"
+                      - key: "Criticality"
+                        value: "High"
      """
     schema = type_schema(
         'create-tags',
-        required="default_tags",
+        #required="default_tags",
         tag_infos={"type": "array", "items": {
             "type": "object",
             "properties": {
                 "fw_instance_ids": {"type": "array", "items": {"type": "string"}},
                 "tags": {"type": "array", "items": {
-                    "type": "object",
-                    "properties": {
-                        "key": "string", "value": "string"
-                    }
-                }}
+                "type": "object",
+                "properties": {
+                    "key": {"type":"string"},
+                    "value": {"type":"string"}
+                }
+            }}
             }
         }},
         default_tags={"type": "array", "items": {
-            "tags": {"type": "array", "items": {
-                "type": "object",
-                "properties": {
-                    "key": "string", "value": "string"
-                }
-            }}
+            "type": "object",
+            "properties": {
+                "key": {"type":"string"},
+                "value": {"type":"string"}
+            }
         }}
     )
 
@@ -341,7 +336,7 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
             for fw_instance_id in default_tag_fw_instance_ids:
                 try:
                     request = CreateTagRequest(fw_instance_id=fw_instance_id,
-                                                        body=CreateTagsDto(default_tags.get("tags")))
+                                                        body=CreateTagsDto(tags=default_tags))
                     respone = client.create_tag(request)
                     log.info("[actions]-{create-tags} "
                              "The resource:[cfw] with request:[%s] "
@@ -349,15 +344,21 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
                 except exceptions.ClientRequestException as e:
                     log.error("[actions]-{create-tags} "
                               "The resource:[cfw] with request:[%s] "
-                              "create default tag  is failed, cause: "
+                              "create default tag is failed, cause: "
                               "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
                               request, e.status_code, e.request_id, e.error_code, e.error_msg)
+                    raise
+                except Exception as e:
+                    log.error("[actions]-{create-tags} "
+                              "The resource:[cfw] with request:[%s] "
+                              "create default tag  is failed, cause: [%s] ",
+                               str(e))
                     raise
 
     def perform_action(self, resource):
         return super().perform_action(resource)
 
-@CloudFirewall.filter_registry.register("alarm-config-status")
+@CloudFirewall.filter_registry.register("check-alarm-config")
 class alarmDisabledFirewallFilter(Filter):
     """Filter firewall with alarm disabled .user can choice alarm types they want to
     check,If alarm_type  is not filled, all types are selected by default.
@@ -370,7 +371,7 @@ class alarmDisabledFirewallFilter(Filter):
                 - name: check-firewall-alarm-status
                   resource: huaweicloud.cfw
                   filters:
-                    - type: alarm-config-status
+                    - type: check-alarm-config
                     alarm_types: # Optional
                         - "attack"
                         - "traffic threshold crossing"
@@ -379,7 +380,7 @@ class alarmDisabledFirewallFilter(Filter):
 
         """
     schema = type_schema(
-        'alarm-config-status',
+        'check-alarm-config',
         alarm_types={
             'type': 'array',
             'items': {
@@ -414,7 +415,8 @@ class alarmDisabledFirewallFilter(Filter):
                 request = ShowAlarmConfigRequest(fw_instance_id=fw_instance_id)
                 response = client.show_alarm_config(request)
                 log.info(
-                    "[filters]-{alarm-config-status} The resource:[cfw] with request:[%s] query firewall with alarm disabled is success.", request)
+                    "[filters]-{check-alarm-config} The resource:[cfw] with request:[%s] "
+                    "query firewall with alarm disabled is success.", request)
 
                 # get firewall with alarm disabled
                 try:
@@ -425,13 +427,13 @@ class alarmDisabledFirewallFilter(Filter):
                             break
                 except Exception as e:
                     log.error(
-                        f"[filters]- The filter:[alarm-config-status] with id:[{firewall.get('fw_instance_id')}] is failed. cause:{str(e)}")
+                        f"[filters]- The filter:[check-alarm-config] with id:[{firewall.get('fw_instance_id')}] is failed. cause:{str(e)}")
                     raise e
 
             except exceptions.ClientRequestException as e:
-                log.error("[filters]-{alarm-config-status} "
+                log.error("[filters]-{check-alarm-config} "
                           "The resource:[cfw] with request:[%s] "
-                          "qquery firewall with alarm disabled is failed, cause: "
+                          "query firewall with alarm disabled is failed, cause: "
                           "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
                           request, e.status_code, e.request_id, e.error_code, e.error_msg)
                 raise e
@@ -445,7 +447,7 @@ class alarmDisabledFirewallFilter(Filter):
         'threat intelligence': 3
     }
 
-@CloudFirewall.action_registry.register("update-firewall-alarm-config")
+@CloudFirewall.action_registry.register("update-alarm-config")
 class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
     """Action to update firewall alarm configuration.For alarm severity. If the value
     of type is 0 or 3, the value of severity can be one or more values of CRITICAL,
@@ -456,17 +458,17 @@ class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
          .. code-block:: yaml
 
              policies:
-               - name: cfw-create-tags
+               - name: cfw-update-alarm-config
                  resource: huaweicloud.cfw
                  filters:
-                   - type: alarm-config-status
+                   - type: check-alarm-config
                      alarm_types: # Optional
                         - "attack"
                         - "traffic threshold crossing"
                         - "EIP unprotected"
                         - "threat intelligence"
                  actions:
-                    - type: update-firewall-alarm-config
+                    - type: update-alarm-config
                         alarm_time_period: 0
                         alarm_types: # Optional
                             - "attack"
@@ -480,7 +482,7 @@ class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
                         username: "cfw-admin"
          """
     schema = type_schema(
-        'update-firewall-alarm-config',
+        'update-alarm-config',
         required=["alarm_time_period", "frequency_count", "frequency_time", "frequency_time", "severity",
                   "topic_urn", "username"],  # 必填参数
         alarm_time_period={
@@ -540,11 +542,11 @@ class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
                 request = self.init_request(alarm_type, fw_instance_id)
                 try:
                     client.update_alarm_config(request)
-                    log.info("[actions]-{update-firewall-alarm-config} "
+                    log.info("[actions]-{update-alarm-config} "
                              "The resource:[cfw] with request:[%s] "
                              "update alarm config is success.", request)
                 except exceptions.ClientRequestException as e:
-                    log.error("[actions]-{update-firewall-alarm-config} "
+                    log.error("[actions]-{update-alarm-config} "
                               "The resource:[cfw] with request:[%s] "
                               "update alarm config is failed, cause: "
                               "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
@@ -561,7 +563,7 @@ class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
             for sev in severity_split:
                 if sev not in self.SEVERITY:
                     log.error(
-                        f"[actions]- [update-firewall-alarm-config]- The resource:[cfw] with id:[{fw_instance_id}]  param severity error")
+                        f"[actions]- [update-alarm-config]- The resource:[cfw] with id:[{fw_instance_id}]  param severity error")
                     raise PolicyValidationError("param severity error")
         elif alarm_type == 1:
             severity = "2"
@@ -593,7 +595,7 @@ class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
 
     SEVERITY= ["CRITICAL","HIGH","MEDIUM","LOW"]
 
-@CloudFirewall.filter_registry.register("firewall-logged")
+@CloudFirewall.filter_registry.register("check-unlogged-firewall")
 class UnloggedFirewallFilter(Filter):
     """Filter firewall with lts disabled .
 
@@ -602,12 +604,12 @@ class UnloggedFirewallFilter(Filter):
         .. code-block:: yaml
 
             policies:
-              - name: query-firewall-with-lts-disable.
+              - name: query-firewall-with-lts-disable
                 resource: huaweicloud.cfw
                 filters:
-                  - type: firewall-logged
+                  - type: check-unlogged-firewall
         """
-    schema = type_schema('firewall-logged')
+    schema = type_schema('check-unlogged-firewall')
 
     def process(self, resources, event=None):
         client = self.manager.get_client()
@@ -620,7 +622,7 @@ class UnloggedFirewallFilter(Filter):
             try:
                 request = ListLogConfigRequest(fw_instance_id=fw_instance_id)
                 response = client.list_log_config(request)
-                log.info("[filters]-{firewall-logged} "
+                log.info("[filters]-{check-unlogged-firewall} "
                          "The resource:[cfw] with request:[%s] "
                          "query firewall with lts disabled is success.", request)
                 r = response.data
@@ -629,7 +631,7 @@ class UnloggedFirewallFilter(Filter):
                 if r is None or r.lts_enable == 0:
                     unlogged_fw_instance_ids.append(fw_instance_id)
             except exceptions.ClientRequestException as e:
-                log.error("[filters]-{firewall-logged} "
+                log.error("[filters]-{check-unlogged-firewall} "
                           "The resource:[cfw] with request:[%s] "
                           "query firewall with lts disabled is failed, cause: "
                           "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
@@ -638,20 +640,20 @@ class UnloggedFirewallFilter(Filter):
 
         return unlogged_fw_instance_ids
 
-@CloudFirewall.action_registry.register("update-firewall-log-config")
+@CloudFirewall.action_registry.register("update-log-config")
 class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
-    """Action to update firewall log configuration.
+    """Action to update firewall log configuration.lts_log_group_id is required
          :example:
 
          .. code-block:: yaml
 
              policies:
-               - name: cfw-create-tags
+               - name: cfw-update-log-config
                  resource: huaweicloud.cfw
                  filters:
-                  - type: firewall-logged
+                  - type: check-unlogged-firewall
                  actions:
-                    - type: update-firewall-log-config
+                    - type: update-log-config
                         lts_log_group_id: 123456
                         lts_attack_log_stream_id: 1234567
                         lts_attack_log_stream_enable: 1
@@ -662,7 +664,7 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
 
          """
     schema = type_schema(
-        'update-firewall-log-config',
+        'update-log-config',
         required=["lts_log_group_id"],  # 必填参数
         lts_log_group_id={
             'type': 'string'
@@ -671,19 +673,19 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
             'type': 'string'
         },
         lts_attack_log_stream_enable={
-            'type': 'Integer'
+            'type': 'integer', 'default': 0
         },
         lts_access_log_stream_id={
             'type': 'string'
         },
         lts_access_log_stream_enable={
-            'type': 'Integer'
+            'type': 'integer', 'default': 0
         },
         lts_flow_log_stream_id={
             'type': 'string'
         },
         lts_flow_log_stream_enable={
-            'type': 'Integer'
+            'type': 'integer', 'default': 0
         }
     )
 
@@ -694,11 +696,11 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
             request = self.init_request(fw_instance_id)
             try:
                 client.update_log_config(request)
-                log.info("[actions]-{update-firewall-log-config} "
+                log.info("[actions]-{update-log-config} "
                          "The resource:[cfw] with request:[%s] "
                          "update log config is success.", request)
             except exceptions.ClientRequestException as e:
-                log.error("[actions]-{update-firewall-log-config} "
+                log.error("[actions]-{update-log-config} "
                           "The resource:[cfw] with request:[%s] "
                           "update log config is failed, cause: "
                           "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
@@ -723,7 +725,7 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
     def perform_action(self, resource):
         return super().perform_action(resource)
 
-@CloudFirewall.filter_registry.register("firewall-without-acl")
+@CloudFirewall.filter_registry.register("check-firewall-acl")
 class NoAclFirewallFilter(Filter):
     """Filter firewall without  acl .
 
@@ -735,9 +737,9 @@ class NoAclFirewallFilter(Filter):
               - name: query-firewall-without-acl.
                 resource: huaweicloud.cfw
                 filters:
-                  - type: firewall-without-acl
+                  - type: check-firewall-acl
         """
-    schema = type_schema('firewall-without-acl')
+    schema = type_schema('check-firewall-acl')
 
     def process(self, resources, event=None):
         client = self.manager.get_client()
@@ -760,11 +762,11 @@ class NoAclFirewallFilter(Filter):
             try:
                 request = ListAclRulesRequest(
                     object_id=object_id,
-                    limit=1024,
+                    limit=DEFAULT_LIMIT_SIZE,
                     offset=0
                 )
                 response = client.list_acl_rules(request)
-                log.info("[filters]-{firewall-without-acl} "
+                log.info("[filters]-{check-firewall-acl} "
                          "The resource:[cfw] with request:[%s] "
                          "query acl list is success.", request)
                 r = response.data.records
@@ -773,7 +775,7 @@ class NoAclFirewallFilter(Filter):
                 if r is None or len(r) == 0:
                     no_acl_object_ids.append(object_id)
             except exceptions.ClientRequestException as e:
-                log.error("[filters]-{firewall-without-acl} "
+                log.error("[filters]-{check-firewall-acl} "
                           "The resource:[cfw] with request:[%s] "
                           "query acl list is failed, cause: "
                           "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
@@ -794,7 +796,7 @@ class CreateDefaultAclRules(HuaweiCloudBaseAction):
                - name: cfw-create-tags
                  resource: huaweicloud.cfw
                  filters:
-                  - type: firewall-without-acl
+                  - type: check-firewall-acl
                  actions:
                     - type: create-default-acl-rule
 
