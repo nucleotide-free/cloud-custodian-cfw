@@ -11,8 +11,9 @@ class CfwTest(BaseTest):
             "resource": "huaweicloud.cfw"},
             session_factory=factory,
         )
-        resources = p.run()
-        self.assertEqual(len(resources), 4)
+        with self.myvcr.use_cassette('cfw_alarm_config_filter', record_mode='once'):
+            resources = p.run()
+        self.assertEqual(len(resources), 2)
 
     def test_cfw_eip_filter(self):
         factory = self.replay_flight_data("cfw_eip_filter")
@@ -26,7 +27,8 @@ class CfwTest(BaseTest):
             },
             session_factory=factory,
         )
-        resources = p.run()
+        with self.myvcr.use_cassette('cfw_eip_filter', record_mode='once'):
+            resources = p.run()
         self.assertEqual(len(resources), 1)
 
     def test_cfw_eip_protect_action(self):
@@ -40,12 +42,13 @@ class CfwTest(BaseTest):
                 }],
                 "actions": [{
                 "type": "protect-eip",
-                "fwInstanceId": "f2bd4277-d2b4-40f3-b98d-75ecc51c68de"
+                "fwInstanceId": "a82b5c38-aee4-4a68-8186-c09975868db9"
             }]
             },
             session_factory=factory,
         )
-        resources = p.run()
+        with self.myvcr.use_cassette('cfw_eip_protect_action', record_mode='once'):
+            resources = p.run()
         self.assertEqual(len(resources), 1)
 
     def test_cfw_tags_filter(self):
@@ -60,8 +63,9 @@ class CfwTest(BaseTest):
             },
             session_factory=factory,
         )
-        resources = p.run()
-        self.assertEqual(len(resources), 3)
+        with self.myvcr.use_cassette('cfw_tagged_filter', record_mode='once'):
+            resources = p.run()
+        self.assertEqual(len(resources), 2)
 
     def test_cfw_create_tags_action(self):
         factory = self.replay_flight_data("cfw_create_tags_action")
@@ -83,8 +87,9 @@ class CfwTest(BaseTest):
             },
             session_factory=factory,
         )
-        resources = p.run()
-        self.assertEqual(len(resources), 1)
+        with self.myvcr.use_cassette('cfw_create_tags_action', record_mode='once'):
+            resources = p.run()
+        self.assertEqual(len(resources), 2)
 
     def test_cfw_alarm_config_filter(self):
         factory = self.replay_flight_data("cfw_alarm_config_filter")
@@ -99,8 +104,9 @@ class CfwTest(BaseTest):
             },
             session_factory=factory,
         )
-        resources = p.run()
-        self.assertEqual(len(resources), 4)
+        with self.myvcr.use_cassette('cfw_alarm_config_filter',record_mode = 'once'):
+            resources = p.run()
+        self.assertEqual(len(resources), 2)
 
     def test_cfw_alarm_config_update_action(self):
         factory = self.replay_flight_data("cfw_alarm_config_update_action")
@@ -124,8 +130,9 @@ class CfwTest(BaseTest):
             },
             session_factory=factory,
         )
-        resources = p.run()
-        self.assertEqual(len(resources), 4)
+        with self.myvcr.use_cassette('cfw_alarm_config_update_action', record_mode='once'):
+            resources = p.run()
+        self.assertEqual(len(resources), 2)
 
     def test_cfw_logged_filter(self):
         factory = self.replay_flight_data("cfw_logged_filter")
@@ -139,7 +146,8 @@ class CfwTest(BaseTest):
             },
             session_factory=factory,
         )
-        resources = p.run()
+        with self.myvcr.use_cassette('cfw_logged_filter', record_mode='once'):
+            resources = p.run()
         self.assertEqual(len(resources), 1)
 
     def test_cfw_logged_config_update_action(self):
@@ -153,13 +161,14 @@ class CfwTest(BaseTest):
                 }],
                 "actions": [{
                 "type": "update-log-config",
-                 "lts_log_group_id": "9e2b6f24-09f3-4acc-a0a9-b9a2e26dffef"
+                 "lts_log_group_id": "63021e4c-c397-491c-8a75-bb13c1b9a700"
                 }]
             },
             session_factory=factory,
         )
-        resources = p.run()
-        self.assertEqual(len(resources), 3)
+        with self.myvcr.use_cassette('cfw_log_config_update_action', record_mode='once'):
+            resources = p.run()
+        self.assertEqual(len(resources), 1)
 
     def test_cfw_acl_filter(self):
         factory = self.replay_flight_data("cfw_no_acl_filter")
@@ -173,11 +182,12 @@ class CfwTest(BaseTest):
             },
             session_factory=factory,
         )
-        resources = p.run()
+        with self.myvcr.use_cassette('cfw_no_acl_filter', record_mode='once'):
+            resources = p.run()
         self.assertEqual(len(resources), 1)
 
     def test_cfw_create_default_acl_rule_action(self):
-        factory = self.replay_flight_data("create_default_acl_rule_action")
+        factory = self.replay_flight_data("cfw_create_default_acl_rule_action")
         p = self.load_policy(
             {
                 "name": "cfw_acl_action",
@@ -191,5 +201,6 @@ class CfwTest(BaseTest):
             },
             session_factory=factory,
         )
-        resources = p.run()
+        with self.myvcr.use_cassette('cfw_create_default_acl_rule_action', record_mode='once'):
+            resources = p.run()
         self.assertEqual(len(resources), 1)

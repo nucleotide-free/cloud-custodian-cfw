@@ -1,5 +1,6 @@
 # Copyright The Cloud Custodian Authors.
 # SPDX-License-Identifier: Apache-2.0
+import copy
 import json
 import logging
 import os
@@ -24,7 +25,7 @@ log = logging.getLogger('custodian.huaweicloud.cfw')
 DEFAULT_LIMIT_SIZE = 200
 
 @resources.register('cfw')
-class CloudFirewall(QueryResourceManager):
+class Cfw(QueryResourceManager):
     """Huawei Cloud Firewall
 
     :example:
@@ -69,7 +70,7 @@ class CloudFirewall(QueryResourceManager):
                     f"[resource]- [augment]- The resource:[cfw] with id:[{fw_instance_id}] is failed. cause:{str(e)}")
         return fw_instances
 
-@CloudFirewall.filter_registry.register("check-unprotected-eip")
+@Cfw.filter_registry.register("check-unprotected-eip")
 class UnprotectedEipFilter(Filter):
     """Filter EIP without protection .
 
@@ -129,7 +130,7 @@ class UnprotectedEipFilter(Filter):
                     unprotected_object.append(r.to_dict())
         return unprotected_object
 
-@CloudFirewall.action_registry.register("protect-eip")
+@Cfw.action_registry.register("protect-eip")
 class ProtectEip(HuaweiCloudBaseAction):
     """Action to protect eip using cloud firewall.
 
@@ -217,7 +218,7 @@ class ProtectEip(HuaweiCloudBaseAction):
     def perform_action(self, resource):
         return super().perform_action(resource)
 
-@CloudFirewall.filter_registry.register("check-untagged-firewall")
+@Cfw.filter_registry.register("check-untagged-firewall")
 class UntaggedFirewallFilter(Filter):
     """Filter firewall without tag .
 
@@ -250,7 +251,7 @@ class UntaggedFirewallFilter(Filter):
                 raise e
         return untagged_fw_instance_ids
 
-@CloudFirewall.action_registry.register("create-tags")
+@Cfw.action_registry.register("create-tags")
 class CreateFirewallTags(HuaweiCloudBaseAction):
     """Action to create firewall tags. action can apply multiple tags to multiple firewall
     instances. users can list all instances and tags to be operated in the policy, or list
@@ -307,7 +308,7 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
         client = self.manager.get_client()
         tag_infos = self.data.get("tag_infos")
         default_tags = self.data.get("default_tags")
-        default_tag_fw_instance_ids = resources
+        default_tag_fw_instance_ids = copy.deepcopy(resources)
         if tag_infos is not None:
             for tag_info in tag_infos:
                 for fw_instance_id in tag_info.get("fw_instance_ids"):
@@ -358,7 +359,7 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
     def perform_action(self, resource):
         return super().perform_action(resource)
 
-@CloudFirewall.filter_registry.register("check-alarm-config")
+@Cfw.filter_registry.register("check-alarm-config")
 class alarmDisabledFirewallFilter(Filter):
     """Filter firewall with alarm disabled .user can choice alarm types they want to
     check,If alarm_type  is not filled, all types are selected by default.
@@ -447,7 +448,7 @@ class alarmDisabledFirewallFilter(Filter):
         'threat intelligence': 3
     }
 
-@CloudFirewall.action_registry.register("update-alarm-config")
+@Cfw.action_registry.register("update-alarm-config")
 class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
     """Action to update firewall alarm configuration.For alarm severity. If the value
     of type is 0 or 3, the value of severity can be one or more values of CRITICAL,
@@ -595,7 +596,7 @@ class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
 
     SEVERITY= ["CRITICAL","HIGH","MEDIUM","LOW"]
 
-@CloudFirewall.filter_registry.register("check-unlogged-firewall")
+@Cfw.filter_registry.register("check-unlogged-firewall")
 class UnloggedFirewallFilter(Filter):
     """Filter firewall with lts disabled .
 
@@ -640,7 +641,7 @@ class UnloggedFirewallFilter(Filter):
 
         return unlogged_fw_instance_ids
 
-@CloudFirewall.action_registry.register("update-log-config")
+@Cfw.action_registry.register("update-log-config")
 class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
     """Action to update firewall log configuration.lts_log_group_id is required
          :example:
@@ -725,7 +726,7 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
     def perform_action(self, resource):
         return super().perform_action(resource)
 
-@CloudFirewall.filter_registry.register("check-firewall-acl")
+@Cfw.filter_registry.register("check-firewall-acl")
 class NoAclFirewallFilter(Filter):
     """Filter firewall without  acl .
 
@@ -748,7 +749,6 @@ class NoAclFirewallFilter(Filter):
 
         for record in resources:
             firewall = record.get('data').get('records')[0]
-            fw_instance_id = firewall.get('fw_instance_id')
             protect_objects = firewall.get('protect_objects')
 
             if protect_objects is not None:
@@ -784,7 +784,7 @@ class NoAclFirewallFilter(Filter):
 
         return no_acl_object_ids
 
-@CloudFirewall.action_registry.register("create-default-acl-rule")
+@Cfw.action_registry.register("create-default-acl-rule")
 class CreateDefaultAclRules(HuaweiCloudBaseAction):
     """Action to create default acl rule for firewall.Configure protection
     rules that block external access by default
