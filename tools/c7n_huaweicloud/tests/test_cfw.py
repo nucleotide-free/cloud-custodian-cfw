@@ -2,8 +2,6 @@ from huaweicloud_common import BaseTest
 
 
 class CfwTest(BaseTest):
-
-
     def test_firewall_list_query(self):
         factory = self.replay_flight_data("cfw_query")
         p = self.load_policy({
@@ -99,12 +97,17 @@ class CfwTest(BaseTest):
                 "resource": "huaweicloud.cfw",
                 "filters": [{
                     "type": "check-alarm-config",
-                    "alarm_types": ['attack','traffic threshold crossing','EIP unprotected','threat intelligence']
+                    "alarm_types": [
+                        'attack',
+                        'traffic threshold crossing',
+                        'EIP unprotected',
+                        'threat intelligence'
+                    ]
                 }]
             },
             session_factory=factory,
         )
-        with self.myvcr.use_cassette('cfw_alarm_config_filter',record_mode = 'once'):
+        with self.myvcr.use_cassette('cfw_alarm_config_filter', record_mode='once'):
             resources = p.run()
         self.assertEqual(len(resources), 2)
 
@@ -116,7 +119,12 @@ class CfwTest(BaseTest):
                 "resource": "huaweicloud.cfw",
                 "filters": [{
                     "type": "check-alarm-config",
-                    "alarm_types": ['attack','traffic threshold crossing','EIP unprotected','threat intelligence']
+                    "alarm_types": [
+                        'attack',
+                        'traffic threshold crossing',
+                        'EIP unprotected',
+                        'threat intelligence'
+                    ]
                 }],
                 "actions": [{
                 "type": "update-alarm-config",

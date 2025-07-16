@@ -7,7 +7,7 @@ import sys
 import http.client
 import socket
 
-from huaweicloudsdkcfw.v1 import  QueryFireWallInstanceDto
+from huaweicloudsdkcfw.v1 import QueryFireWallInstanceDto
 from retrying import retry
 
 from c7n.actions import ActionRegistry

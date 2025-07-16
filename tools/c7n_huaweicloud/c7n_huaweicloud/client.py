@@ -5,7 +5,7 @@ import logging
 import os
 import sys
 
-from huaweicloudsdkcfw.v1 import CfwClient, ListFirewallDetailRequest, ListFirewallListRequest, ListEipsRequest
+from huaweicloudsdkcfw.v1 import CfwClient, ListFirewallListRequest
 from huaweicloudsdkcfw.v1.region.cfw_region import CfwRegion
 from huaweicloudsdkconfig.v1 import ConfigClient, ShowTrackerConfigRequest
 from huaweicloudsdkconfig.v1.region.config_region import ConfigRegion
