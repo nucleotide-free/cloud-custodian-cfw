@@ -19,11 +19,11 @@ interactions:
       X-Project-Id:
       - 08990bb558904dd8ba065ba082af538d
       X-Sdk-Date:
-      - 20250716T060941Z
+      - 20250718T064531Z
       X-Security-Token:
-      - ggpjbi1ub3J0aC00Tz17ImFjY2VzcyI6IkhTVDNGWjZGTlZZTlJXNEc1Q04yIiwiaXNzdWVkX2F0IjoxNzUyNjI5ODYzMzczLCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNzE2MjYzMzczLCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fVZwObKyI4YSClY4ghBoYLhgQSQlfeKhjLXNB-vGI2pPrbcF9BrF7-0U-2Hx1gDgWMuBzYzJ-NLXW1KbmVNhe-gM7VHGa_DvSJ8LpQa3o1kG4n-B7dPEIn_K7VkiuzAGXA3s3HtYBC8SRtKWadCs_BP_x6wjtclPHSvM_kuJQjdZWgNOuzdgB55wGu3RBZMGkKzbvkmLOoikHxKrVaHKYkVk9KwbB0MbKh4yr5Mkq6sD-zY5NWLrvJqyNheer6MVvhwn229EExeFoGQT2xiWXyo58P5NItfPluZRjahCT4VlzkPgNJ0n9tvWvfLN76itH2B8Vh-k43o3KcA-I9-a-V4=
+      - ggpjbi1ub3J0aC00Tz97ImFjY2VzcyI6IkhTVDNGWjJMQkFNUTNZTU83NEZUIiwiaXNzdWVkX2F0IjoxNzUyODA0MzA5MDkwLCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyODkwNzA5MDkwLCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fQ-Cr_GH8__21h3s-WYXLaQPst6C6EgvvEh-idRp5Scn3X-zsufS3i9gt7jNFONDG_GuxN39xooyxm97flgqS2K8EgayuiJ2qV3tZ_ZU0n8rOI-iY9C9JIl0rSp3B5i-9yClovhZyDrJtsj58eVXSES1fhBkee-DPEs5MhGg-wzr8i11fmFhn1YhMHR0NlWeuk3bUVOOF68m-GiXniargHu_SQ01xMcz1HZIQMuIERY6aaHN5y5gflzLIWZgqhXmKEV1m0maMdGhSam9P9ux9OvwL97yia3crnciBR21my0-Mpq7XUu6Q5RjQjf3afxBlpChOJ8eEA_uTyGyrNtRRKU=
     method: POST
-    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewalls/list
+    uri: https://proxyhk.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewalls/list
   response:
     body:
       string: !!binary |
@@ -46,18 +46,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 16 Jul 2025 06:09:41 GMT
+      - Fri, 18 Jul 2025 06:45:31 GMT
       Server:
       - CloudWAF
       Set-Cookie:
-      - HWWAFSESTIME=1752646181436; path=/
-      - HWWAFSESID=08dfc737391b33307b; path=/
+      - HWWAFSESID=7728076105505a230f; path=/
+      - HWWAFSESTIME=1752821131071; path=/
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains;
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 12f4d2e50e44379e79a664668ed376af
+      - ef5781c15481179b9934f5b6c1253b5d
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -65,7 +65,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 12f4d2e50e44379e79a664668ed376af
+      - ef5781c15481179b9934f5b6c1253b5d
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -85,7 +85,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESTIME=1752646181436; HWWAFSESID=08dfc737391b33307b
+      - HWWAFSESID=7728076105505a230f; HWWAFSESTIME=1752821131071
       Host:
       - cfw.ap-southeast-3.myhuaweicloud.com
       User-Agent:
@@ -93,11 +93,11 @@ interactions:
       X-Project-Id:
       - 08990bb558904dd8ba065ba082af538d
       X-Sdk-Date:
-      - 20250716T060941Z
+      - 20250718T064531Z
       X-Security-Token:
-      - ggpjbi1ub3J0aC00Tz17ImFjY2VzcyI6IkhTVDNGWjZGTlZZTlJXNEc1Q04yIiwiaXNzdWVkX2F0IjoxNzUyNjI5ODYzMzczLCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNzE2MjYzMzczLCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fVZwObKyI4YSClY4ghBoYLhgQSQlfeKhjLXNB-vGI2pPrbcF9BrF7-0U-2Hx1gDgWMuBzYzJ-NLXW1KbmVNhe-gM7VHGa_DvSJ8LpQa3o1kG4n-B7dPEIn_K7VkiuzAGXA3s3HtYBC8SRtKWadCs_BP_x6wjtclPHSvM_kuJQjdZWgNOuzdgB55wGu3RBZMGkKzbvkmLOoikHxKrVaHKYkVk9KwbB0MbKh4yr5Mkq6sD-zY5NWLrvJqyNheer6MVvhwn229EExeFoGQT2xiWXyo58P5NItfPluZRjahCT4VlzkPgNJ0n9tvWvfLN76itH2B8Vh-k43o3KcA-I9-a-V4=
+      - ggpjbi1ub3J0aC00Tz97ImFjY2VzcyI6IkhTVDNGWjJMQkFNUTNZTU83NEZUIiwiaXNzdWVkX2F0IjoxNzUyODA0MzA5MDkwLCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyODkwNzA5MDkwLCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fQ-Cr_GH8__21h3s-WYXLaQPst6C6EgvvEh-idRp5Scn3X-zsufS3i9gt7jNFONDG_GuxN39xooyxm97flgqS2K8EgayuiJ2qV3tZ_ZU0n8rOI-iY9C9JIl0rSp3B5i-9yClovhZyDrJtsj58eVXSES1fhBkee-DPEs5MhGg-wzr8i11fmFhn1YhMHR0NlWeuk3bUVOOF68m-GiXniargHu_SQ01xMcz1HZIQMuIERY6aaHN5y5gflzLIWZgqhXmKEV1m0maMdGhSam9P9ux9OvwL97yia3crnciBR21my0-Mpq7XUu6Q5RjQjf3afxBlpChOJ8eEA_uTyGyrNtRRKU=
     method: POST
-    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewalls/list
+    uri: https://proxyhk.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewalls/list
   response:
     body:
       string: !!binary |
@@ -115,7 +115,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 16 Jul 2025 06:09:42 GMT
+      - Fri, 18 Jul 2025 06:45:32 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -123,7 +123,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 9c45b1ba988d5dc9f00ed6bf06780c0d
+      - 9ab3b1f874bee1abf4aeb00916cd236f
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -131,7 +131,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 9c45b1ba988d5dc9f00ed6bf06780c0d
+      - 9ab3b1f874bee1abf4aeb00916cd236f
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -155,31 +155,31 @@ interactions:
       X-Project-Id:
       - 08990bb558904dd8ba065ba082af538d
       X-Sdk-Date:
-      - 20250716T060942Z
+      - 20250718T064532Z
       X-Security-Token:
-      - ggpjbi1ub3J0aC00Tz17ImFjY2VzcyI6IkhTVDNGWjZGTlZZTlJXNEc1Q04yIiwiaXNzdWVkX2F0IjoxNzUyNjI5ODYzMzczLCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNzE2MjYzMzczLCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fVZwObKyI4YSClY4ghBoYLhgQSQlfeKhjLXNB-vGI2pPrbcF9BrF7-0U-2Hx1gDgWMuBzYzJ-NLXW1KbmVNhe-gM7VHGa_DvSJ8LpQa3o1kG4n-B7dPEIn_K7VkiuzAGXA3s3HtYBC8SRtKWadCs_BP_x6wjtclPHSvM_kuJQjdZWgNOuzdgB55wGu3RBZMGkKzbvkmLOoikHxKrVaHKYkVk9KwbB0MbKh4yr5Mkq6sD-zY5NWLrvJqyNheer6MVvhwn229EExeFoGQT2xiWXyo58P5NItfPluZRjahCT4VlzkPgNJ0n9tvWvfLN76itH2B8Vh-k43o3KcA-I9-a-V4=
+      - ggpjbi1ub3J0aC00Tz97ImFjY2VzcyI6IkhTVDNGWjJMQkFNUTNZTU83NEZUIiwiaXNzdWVkX2F0IjoxNzUyODA0MzA5MDkwLCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyODkwNzA5MDkwLCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fQ-Cr_GH8__21h3s-WYXLaQPst6C6EgvvEh-idRp5Scn3X-zsufS3i9gt7jNFONDG_GuxN39xooyxm97flgqS2K8EgayuiJ2qV3tZ_ZU0n8rOI-iY9C9JIl0rSp3B5i-9yClovhZyDrJtsj58eVXSES1fhBkee-DPEs5MhGg-wzr8i11fmFhn1YhMHR0NlWeuk3bUVOOF68m-GiXniargHu_SQ01xMcz1HZIQMuIERY6aaHN5y5gflzLIWZgqhXmKEV1m0maMdGhSam9P9ux9OvwL97yia3crnciBR21my0-Mpq7XUu6Q5RjQjf3afxBlpChOJ8eEA_uTyGyrNtRRKU=
     method: GET
-    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewall/exist?fw_instance_id=e8b8849f-b58e-4b89-b45e-dd90ec8c9b29&limit=200&offset=0&service_type=0
+    uri: https://proxyhk.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewall/exist?fw_instance_id=e8b8849f-b58e-4b89-b45e-dd90ec8c9b29&limit=200&offset=0&service_type=0
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4xVzY7kNBB+l1zpSJme6Um6b2gPCAkkxMIJIcuxK2kzjm1sJ00z6vtKKyFxRFwQ
-        J45cOO7jzO5rUI6TdJpkJebQ49R/ffW5/Jxw6mlyeE6kaIRPDtss2yS6qhzgBx4tMG25Sw7fPSfV
-        iQjlPFUMiODJIYGiLIqHfZWWuwLSh7LYp+XDDlLO9xmwgu3L7T4JMZxu7eh0hxJFGwjHfJfleXZ/
-        nxePOxTPEwwmr779+ov0wy9/f3j366dfff7+7V/v/3n78ub3lzd/vPz5G7qA8mCNFQ6IsfoHYD5m
-        yVDnaY2FJ88XPB8p8WeDEe82CTtSWwNpNIe+Rwe2E5gyGmQhaC3U+I0OlaSdtgGlDqwTWvVSEIYw
-        3aoetU3SGTZ9bpKSKn4S3B+jUuqaOK8trWMGDhVtpSezGLuZ+DbWKJ3FnBv/N3ZwvkmPstYBJ7aV
-        MAvrtafyVpjh3+U6sDD27zcJAusDsLoM+EYuxHPEes9LChXjaQFllj5s8zLdZ9si3TKWP7K7XZnn
-        WxzB4LKcfd4PK4J/wXzIAN+6vkbhiJacVMLCiUo50SM5VFQ6QNvWGG2xENM9LoStlegqkSFC1cnB
-        2xaVFWB0i9PVdS0hDBWTjB5UeUE6YUP6aD5TOubNlGPuZIwUjPqeGKPX66h8DS4SZsWNIfpQoxbx
-        V5WYKpzZyAD3QirMmhROhFlsDghY4kFhLwEvg6CHHJHuyzK4on4lWmDRrDHCdUPFtT/jInOkcGve
-        jJoeZGRST1GhngioYxxdtJZa1aFxhfWtRLh2Eyox0M/w//QzcaU8G+rWgPLHEJjE9TAEoJLa5uNz
-        qKQ+EYymmcCSODnqm7aV9pPptO0s8LYv9ZoEJ94gHmK4SiuJKO8CSDzMuEd4xWYAd0VzQ4ESqMV/
-        C8gWXt7SqhJsuCqYmZSSsqePjNY1M5ZPUoPdQoVbk68o5+NvcGNfYZ9XwUxY4T+d15Tyvj6tySMr
-        sUcPUooa5qthXjM74jBWwQw7AtNi72taJ0vUii5AqsCftH0iDuqhiYV5FTpdkeNMcHeZFc2PehWM
-        yBLKhsW8cBv75liIqM4rFuHWcOWme7vMEdhYW92OO+3Sa2lHhaQlXm1dTi3ir0Mwhndy3M9RV6E9
-        8tVoXBXn8SXBJ8eLBsjPWoVl/9mX33ySFYcsLPpZBUjX2d4Oq79/k/B1jbWMdmV77mcUd2kwCKkv
-        /wIAAP//AwAz7MLnvQgAAA==
+        H4sIAAAAAAAAA4xVT4/jNBT/LrnSSJnOdJL2hvaAkEBCLJwQshz7JTXj2MZ2Usqo95VWQuKIuCBO
+        HLlw3I8zu1+D5zhJU5KVuLTO+/9+7+fn54RTT5PDcyJFI3xy2GbZJtFV5QA/8GiBactdcvjuOalO
+        RCjnqWJABE8OCRRlUTzsq7TcFZA+lMU+LR92kHK+z4AVbF9u90mI4XRrR6c7lCjaQDjmuyzPs/v7
+        vHjcoXieYDB59e3XX6Qffvn7w7tfP/3q8/dv/3r/z9uXN7+/vPnj5c/f0AWUB2uscECM1T8A8zFL
+        hjpPayw8eb7g+UiJPxuMeLdJ2JHaGkijOfQ9OrCdwJTRIAtBa6HGb3SoJO20DSh1YJ3QqpeCMITp
+        VvWobZLOsOlzk5RU8ZPg/hiVUtfEeW1pHTNwqGgrPZnF2M3Et7FG6Szm3Pi/sYPzTXqUtQ44sa2E
+        Mew9wqM9lTdCNM2yy3VgYezfbxIE1gdgdRnwjVyI54j1npcUKsbTAsosfdjmZbrPtkW6ZSx/ZHe7
+        Ms+3OILBZTn7vB9WBP+C+ZABvnV968IRLTmphIUTlXKiR3KoqHSAtq0x2mIhpntcCFsr0VUiQ4Sq
+        k4O3LSorwOgWp6vrWkIYKiYZPajygnTChvTRfKZ0zJspx9zJGCkY9T0xRq/XUfkaXCTMihtD9KFG
+        LeKvKjFVOLORAe6FVJg1KZwIs9gcELDEg8JeAl4GQQ85It2XZXBF/Uq0wKJZY4Trhoprf8ZF5kjh
+        1rwZNT3IyKSeokI9EVDHOLpoLbWqQ+MK61uJcO0mVGKgn+H/6WfiSnk21K0B5Y8hMInrYQhAJbXN
+        x+dQSX0iGE0zgSVxctQ3bSvtJ9Np21ngbV/qNQlOvEE8xHCVVhJR3gWQeJhxj/CKzQDuiuaGAiVQ
+        i38LyBZe3tKqEmy4KpiZlJKyp4+M1jUzlk9Sg91ChVuTryjn429wY19hn1fBTFjhP53XlPK+Pq3J
+        IyuxRw9Sihrmq2FeMzviMFbBDDsC02Lva1onS9SKLkCqwJ+0fSIO6qGJhXkVOl2R40xwd5kVzY96
+        FYzIEsqGxbxwG/vmWIiozisW4dZw5aZ7u8wR2Fhb3Y477dJraUeFpCVebV1OLeKvQzCGd3Lcz1FX
+        oT3y1WhcFefxJcEnx4sGyM9ahWX/2ZfffJIVhyws+lkFSNfZ3g6rv3+T8HWNtYx2ZXvuZxR3aTAI
+        qS//AgAA//8DAJqbNeS9CAAA
     headers:
       Cache-Control:
       - no-cache, no-store, max-age=0, must-revalidate
@@ -190,18 +190,18 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 16 Jul 2025 06:09:43 GMT
+      - Fri, 18 Jul 2025 06:45:33 GMT
       Server:
       - CloudWAF
       Set-Cookie:
-      - HWWAFSESID=6dd9b73435a4be61c6; path=/
-      - HWWAFSESTIME=1752646182703; path=/
+      - HWWAFSESID=7728079105505a230f; path=/
+      - HWWAFSESTIME=1752821131071; path=/
       Strict-Transport-Security:
       - max-age=31536000; includeSubdomains;
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 1e878abbd8d6fbe3017b29e143daa4b7
+      - 2ba451d2f7f4630a8e8da5a567432471
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -209,7 +209,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 1e878abbd8d6fbe3017b29e143daa4b7
+      - 2ba451d2f7f4630a8e8da5a567432471
       X-XSS-Protection:
       - 1; mode=block;
     status:
@@ -227,7 +227,7 @@ interactions:
       Content-Type:
       - application/json
       Cookie:
-      - HWWAFSESID=6dd9b73435a4be61c6; HWWAFSESTIME=1752646182703
+      - HWWAFSESID=7728079105505a230f; HWWAFSESTIME=1752821131071
       Host:
       - cfw.ap-southeast-3.myhuaweicloud.com
       User-Agent:
@@ -235,31 +235,31 @@ interactions:
       X-Project-Id:
       - 08990bb558904dd8ba065ba082af538d
       X-Sdk-Date:
-      - 20250716T060943Z
+      - 20250718T064533Z
       X-Security-Token:
-      - ggpjbi1ub3J0aC00Tz17ImFjY2VzcyI6IkhTVDNGWjZGTlZZTlJXNEc1Q04yIiwiaXNzdWVkX2F0IjoxNzUyNjI5ODYzMzczLCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyNzE2MjYzMzczLCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fVZwObKyI4YSClY4ghBoYLhgQSQlfeKhjLXNB-vGI2pPrbcF9BrF7-0U-2Hx1gDgWMuBzYzJ-NLXW1KbmVNhe-gM7VHGa_DvSJ8LpQa3o1kG4n-B7dPEIn_K7VkiuzAGXA3s3HtYBC8SRtKWadCs_BP_x6wjtclPHSvM_kuJQjdZWgNOuzdgB55wGu3RBZMGkKzbvkmLOoikHxKrVaHKYkVk9KwbB0MbKh4yr5Mkq6sD-zY5NWLrvJqyNheer6MVvhwn229EExeFoGQT2xiWXyo58P5NItfPluZRjahCT4VlzkPgNJ0n9tvWvfLN76itH2B8Vh-k43o3KcA-I9-a-V4=
+      - ggpjbi1ub3J0aC00Tz97ImFjY2VzcyI6IkhTVDNGWjJMQkFNUTNZTU83NEZUIiwiaXNzdWVkX2F0IjoxNzUyODA0MzA5MDkwLCJtZXRob2RzIjpbInRva2VuIl0sInJvbGUiOltdLCJyb2xldGFnZXMiOltdLCJ0aW1lb3V0X2F0IjoxNzUyODkwNzA5MDkwLCJ1c2VyIjp7Ik9TLUZFREVSQVRJT04iOnsiZ3JvdXBzIjpbeyJpZCI6ImMxZDMyNzYzMTE4NTRmOTBhMzE1OWQ3NTRjNjE1MTQ5IiwibmFtZSI6IkNGV0Z1bGxBY2Nlc3MifV0sImlkZW50aXR5X3Byb3ZpZGVyIjp7ImlkIjoidzNfc3NvX3ozMDAwMDIxNSJ9LCJwcm90b2NvbCI6eyJpZCI6InNhbWwifX0sImRvbWFpbiI6eyJpZCI6ImVhYzJjNGI2ZmZkOTRjZGViYzRkYmIwOWM3NDdlZjA1IiwibmFtZSI6Imh3c3RhZmZfQ0ZXIn0sImlkIjoiV2NPbzJJSzEwcER5b2RseXloM1k1bEgyMVVHaHBDc3oiLCJuYW1lIjoiaDAwOTM0NDQ1IiwicGFzc3dvcmRfZXhwaXJlc19hdCI6IiIsInVzZXJfdHlwZSI6NDh9fQ-Cr_GH8__21h3s-WYXLaQPst6C6EgvvEh-idRp5Scn3X-zsufS3i9gt7jNFONDG_GuxN39xooyxm97flgqS2K8EgayuiJ2qV3tZ_ZU0n8rOI-iY9C9JIl0rSp3B5i-9yClovhZyDrJtsj58eVXSES1fhBkee-DPEs5MhGg-wzr8i11fmFhn1YhMHR0NlWeuk3bUVOOF68m-GiXniargHu_SQ01xMcz1HZIQMuIERY6aaHN5y5gflzLIWZgqhXmKEV1m0maMdGhSam9P9ux9OvwL97yia3crnciBR21my0-Mpq7XUu6Q5RjQjf3afxBlpChOJ8eEA_uTyGyrNtRRKU=
     method: GET
-    uri: https://proxycn2.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewall/exist?fw_instance_id=a82b5c38-aee4-4a68-8186-c09975868db9&limit=200&offset=0&service_type=0
+    uri: https://proxyhk.huawei.com:8080/v1/08990bb558904dd8ba065ba082af538d/firewall/exist?fw_instance_id=a82b5c38-aee4-4a68-8186-c09975868db9&limit=200&offset=0&service_type=0
   response:
     body:
       string: !!binary |
-        H4sIAAAAAAAAA4xVvY7cNhB+F7VZAdp/3XaBiyBAAhhxUgUBQZEjLXNckiYpbTaH7Q0YCJAySBOk
-        cukmpR/n7NfIUJS02kgGcsUeNf/zzcfhU8Kpp8nhKZHiJHxyWGXZItFl6QA/8GiBactdcvjxKSnP
-        RCjnqWJABE8OCc1XxZat85QCbNIN3eVpvsx3KcseHvbbfJfz4iEJMZyube+0RImiJwjH/Xa5W29W
-        q3y/36N4nKAzefHDd9+kn357/+nD71++/Prj23cf/3n7/ObP5zd/Pf/9B7qA8mCNFQ6IsfpnYD5m
-        yVDnaYWFJ09XPB8p8ReDEZeLhB2prYCcNIe2Rwe2EZgyGmQhaCVU/40OpaSNtgGlBqwTWrVSEIYw
-        XasWtUXSGDZ8LpKCKn4W3B+jUuqKOK8trWIGDiWtpSejGNuR+D5WLx3FHBv/N3ZwvkuPstoBJ7aW
-        MArrtafyXpjh3/U2sDD2nxYJAusDsLoI+EYuxHPEGnZ0mdHNKi3WxTbdbPJtmu+zMl1nD7DcF5st
-        34bpdi7T2eeBEh34V8yHDPC1a2sUjmjJSSksnKmUAz2SQ0mlA7StjdEWCzHNbiKsrURXiQwRqkoO
-        3taoLAGjW5yurioJYaiYpPegygvSCBvSR/OR0jFvhhxjJ2OkYNS3xOi9XkXlK3CRMDNuDNGHCrWI
-        vyrFUOHIRga4J1Jh5qRwJsxic0DAEg8Kewl4GQQ95Ih0n5bBFfUz0QKLRo0Rrk9U3PozLjJHCjfn
-        zahpQUYmtRQV6pGAOsbRRWupVRUaV1jfTIRbN6ESA+0M/08/A1eKi6FuDih/DIFJXA9dACqpPX1+
-        DqXUZ4LRNBNYEidHfde20n4wHbadBV63pd6S4MRPiIfortJMIsqbABIPM24RnrHpwJ3R3FGgAGrx
-        3wSyiZe3tCwF664KZiaFpOzxM6N1pxHLB6nBbqHErclnlOPxn3Bj32AfV8FMWOG/XOaUcl2d5+SR
-        ldijBylFBePVMK6ZHXEYs2CGHYFpsfc5rZMFakUTIFXgz9o+EgdV18TEvAydzshxJri7zIzmtZ4F
-        I7KEsm4xT9z6vjkWIsrLjEW4NVy54d5OcwQ2VlbX/U67tlraUCFpgVdbF0OL+OsQjO6d7Pdz1JVo
-        j3w1GlfFpX9J8Mnx4gTkV63Csv/q2++/yPJDFl7lUQVI19HeDqu/fZPwdY219HZFfWlnFHdpMAip
-        r/8CAAD//wMAjufi970IAAA=
+        H4sIAAAAAAAAA4xVva7bNhR+F621APlf11uRoSjQAkHTTkVBUOSRzF6aZEhKrnvhPUCAAh2LLkWn
+        jFk65nFu8ho9FCVZrhSgi02d//Odj4dPCaeeJoenRIqT8MlhlWWLRJelA/zAowWmLXfJ4cenpDwT
+        oZynigERPDkkNF8VW7bOUwqwSTd0l6f5Mt+lLHt42G/zXc6LhyTEcLq2vdMSJYqeIBz32+VuvVmt
+        8v1+j+Jxgs7kxQ/ffZN++u39pw+/f/ny649v33385+3zmz+f3/z1/Pcf6ALKgzVWOCDG6p+B+Zgl
+        Q52nFRaePF3xfKTEXwxGXC4SdqS2AnLSHNoeHdhGYMpokIWglVD9NzqUkjbaBpQasE5o1UpBGMJ0
+        rVrUFklj2PC5SAqq+Flwf4xKqSvivLa0ihk4lLSWnoxibEfi+1i9dBRzbPzf2MH5Lj3Kagec2FpC
+        H3aN8GhP5Z0QTbPsehtYGPtPiwSB9QFYXQR8IxfiOWINO7rM6GaVFutim242+TbN91mZrrMHWO6L
+        zZZvw3Q7l+ns80CJDvwr5kMG+Nq1rQtHtOSkFBbOVMqBHsmhpNIB2tbGaIuFmGY3EdZWoqtEhghV
+        JQdva1SWgNEtTldXlYQwVEzSe1DlBWmEDemj+UjpmDdDjrGTMVIw6lti9F6vovIVuEiYGTeG6EOF
+        WsRflWKocGQjA9wTqTBzUjgTZrE5IGCJB4W9BLwMgh5yRLpPy+CK+plogUWjxgjXJypu/RkXmSOF
+        m/Nm1LQgI5Naigr1SEAd4+iitdSqCo0rrG8mwq2bUImBdob/p5+BK8XFUDcHlD+GwCSuhy4AldSe
+        Pj+HUuozwWiaCSyJk6O+a1tpP5gO284Cr9tSb0lw4ifEQ3RXaSYR5U0AiYcZtwjP2HTgzmjuKFAA
+        tfg3gWzi5S0tS8G6q4KZSSEpe/zMaN1pxPJBarBbKHFr8hnlePwn3Ng32MdVMBNW+C+XOaVcV+c5
+        eWQl9uhBSlHBeDWMa2ZHHMYsmGFHYFrsfU7rZIFa0QRIFfizto/EQdU1MTEvQ6czcpwJ7i4zo3mt
+        Z8GILKGsW8wTt75vjoWI8jJjEW4NV264t9McgY2V1XW/066tljZUSFrg1dbF0CL+OgSjeyf7/Rx1
+        JdojX43GVXHpXxJ8crw4AflVq7Dsv/r2+y+y/JCFV3lUAdJ1tLfD6m/fJHxdYy29XVFf2hnFXRoM
+        QurrvwAAAP//AwAnkBX0vQgAAA==
     headers:
       Cache-Control:
       - no-cache, no-store, max-age=0, must-revalidate
@@ -270,7 +270,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 16 Jul 2025 06:09:44 GMT
+      - Fri, 18 Jul 2025 06:45:34 GMT
       Server:
       - CloudWAF
       Strict-Transport-Security:
@@ -278,7 +278,7 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-B3-TraceId:
-      - 8077e028a18f295125867f7bab4bd908
+      - e609e330f0fc296377c2620d8beb3652
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
@@ -286,7 +286,7 @@ interactions:
       X-Frame-Options:
       - SAMEORIGIN
       X-Request-Id:
-      - 8077e028a18f295125867f7bab4bd908
+      - e609e330f0fc296377c2620d8beb3652
       X-XSS-Protection:
       - 1; mode=block;
     status:

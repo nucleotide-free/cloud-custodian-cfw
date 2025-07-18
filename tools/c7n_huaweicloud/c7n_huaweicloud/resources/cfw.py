@@ -2,15 +2,18 @@
 # SPDX-License-Identifier: Apache-2.0
 import copy
 import logging
+import re
 
 from huaweicloudsdkcfw.v1 import (ChangeEipStatusRequest, EipOperateProtectReqIpInfos,
-    EipOperateProtectReq, ListEipsRequest, ListFirewallDetailRequest,
-    CreateTagRequest, CreateTagsDto, ShowAlarmConfigRequest,
-    UpdateAlarmConfigRequest, UpdateAttackLogAlarmConfigDto,
-    ListLogConfigRequest, UpdateLogConfigRequest, LogConfigDto,
-    ListAclRulesRequest, AddAclRuleRequest, RuleServiceDto,
-    RuleAddressDtoForRequest, OrderRuleAclDto, AddRuleAclDtoRules,
-    AddRuleAclDto)
+                                  EipOperateProtectReq, ListEipsRequest, ListFirewallDetailRequest,
+                                  CreateTagRequest, CreateTagsDto, ShowAlarmConfigRequest,
+                                  UpdateAlarmConfigRequest, UpdateAttackLogAlarmConfigDto,
+                                  ListLogConfigRequest, UpdateLogConfigRequest, LogConfigDto,
+                                  ListAclRulesRequest, AddAclRuleRequest, RuleServiceDto,
+                                  RuleAddressDtoForRequest, OrderRuleAclDto, AddRuleAclDtoRules,
+                                  AddRuleAclDto)
+from huaweicloudsdklts.v2 import LogGroup, ListLogGroupsRequest, ListLogStreamRequest
+
 from c7n.exceptions import PolicyValidationError
 from c7n.utils import local_session
 from tools.c7n_huaweicloud.c7n_huaweicloud.actions.base import HuaweiCloudBaseAction
@@ -136,7 +139,9 @@ class UnprotectedEipFilter(Filter):
 
 @Cfw.action_registry.register("protect-eip")
 class ProtectEip(HuaweiCloudBaseAction):
-    """Action to protect eip using cloud firewall.
+    """Action to protect eip using cloud firewall.firewall with certain fwInstanceId
+    is used to protect EIPs. It is optional.The default firewall is the first firewall
+     in the current region.
 
      :example:
 
@@ -150,9 +155,6 @@ class ProtectEip(HuaweiCloudBaseAction):
              actions:
                - type: protect-eip
                  fwInstanceId: your cloud firewall instance id
-
-        fwInstanceId is used to protect EIPs. It is optional.
-        The default firewall is the first firewall in the current region.
 
      """
     schema = type_schema(
@@ -272,8 +274,6 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
          policies:
           - name: cfw-create-tags
             resource: huaweicloud.cfw
-            filters:
-              - type: check-untagged-firewall
             actions:
               - type: create-tags
                 default_tags:
@@ -289,7 +289,7 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
      """
     schema = type_schema(
         'create-tags',
-        # required="default_tags",
+        required=["default_tags"],
         tag_infos={"type": "array", "items": {
             "type": "object",
             "properties": {
@@ -316,43 +316,26 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
         client = self.manager.get_client()
         tag_infos = self.data.get("tag_infos")
         default_tags = self.data.get("default_tags")
-        default_tag_fw_instance_ids = copy.deepcopy(resources)
-        if tag_infos is not None:
+        for record in resources:
+            firewall = record.get('data').get('records')[0]
+            fwInstanceId = firewall.get('fw_instance_id')
+
             for tag_info in tag_infos:
-                for fw_instance_id in tag_info.get("fw_instance_ids"):
-                    # if this firewall is untagged
-                    if fw_instance_id in resources:
-                        try:
-                            default_tag_fw_instance_ids.remove(fw_instance_id)
-                            req = CreateTagRequest(fw_instance_id=fw_instance_id,
-                                                       body=CreateTagsDto(tag_info.get("tags")))
-                            client.create_tag(req)
-                            log.info("[actions]-{create-tags} "
-                                     "The resource:[cfw] with request:[%s] "
-                                     "create tag is success.", req)
-                        except exceptions.ClientRequestException as e:
-                            log.error("[actions]-{create-tags} "
-                                      "The resource:[cfw] with request:[%s] "
-                                      "create tag  is failed, cause: "
-                                      "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
-                                      req, e.status_code, e.request_id, e.error_code, e.error_msg)
-                            raise
-                    else:
-                        log.error(
-                            f"[actions]- [create-tags]- "
-                            f"The resource:[cfw] with id:[{fw_instance_id}] "
-                            f"create tag failed. cause: "
-                            f"firewall doesn't exist or already have tags")
-        # create default tags
-        if default_tag_fw_instance_ids is not None and len(default_tag_fw_instance_ids) > 0:
-            for fw_instance_id in default_tag_fw_instance_ids:
                 try:
-                    request = CreateTagRequest(fw_instance_id=fw_instance_id,
-                                               body=CreateTagsDto(tags=default_tags))
-                    client.create_tag(request)
-                    log.info("[actions]-{create-tags} "
-                             "The resource:[cfw] with request:[%s] "
-                             "create default tag is success.", request)
+                    if fwInstanceId in tag_info.get("fw_instance_ids"):
+                        req = CreateTagRequest(fw_instance_id=fwInstanceId,
+                                               body=CreateTagsDto(tag_info.get("tags")))
+                        client.create_tag(req)
+                        log.info("[actions]-{create-tags} "
+                                 "The resource:[cfw] with request:[%s] "
+                                 "create tag is success.", req)
+                    else:
+                        request = CreateTagRequest(fw_instance_id=fwInstanceId,
+                                                   body=CreateTagsDto(tags=default_tags))
+                        client.create_tag(request)
+                        log.info("[actions]-{create-tags} "
+                                 "The resource:[cfw] with request:[%s] "
+                                 "create default tag is success.", request)
                 except exceptions.ClientRequestException as e:
                     log.error("[actions]-{create-tags} "
                               "The resource:[cfw] with request:[%s] "
@@ -374,7 +357,8 @@ class CreateFirewallTags(HuaweiCloudBaseAction):
 @Cfw.filter_registry.register("check-alarm-config")
 class alarmDisabledFirewallFilter(Filter):
     """Filter firewall with alarm disabled .user can choice alarm types they want to
-    check,If alarm_type  is not filled, all types are selected by default.
+    check,If alarm_type is not filled, all types(attack/traffic threshold crossing/
+    EIP unprotected/threat intelligence) are selected by default.
 
         :example:
 
@@ -466,9 +450,20 @@ class alarmDisabledFirewallFilter(Filter):
 
 @Cfw.action_registry.register("update-alarm-config")
 class UpdateFirewallAlarmConfig(HuaweiCloudBaseAction):
-    """Action to update firewall alarm configuration.For alarm severity. If the value
-    of type is 0 or 3, the value of severity can be one or more values of CRITICAL,
-     HIGH, MEDIUM, and LOW combined. If the value of type is 2, severity can only be 3.
+    """Action to update firewall alarm configuration.
+
+     alarm severity: If the value of type is 0 or 3, the value of severity can be
+        one or more values of CRITICAL,HIGH, MEDIUM, and LOW combined. If the value of
+        type is 2, severity can only be 3.
+     alarm_time_period : 0 (all day), 1 (8:00 to 22:00)
+     alarm_type : 0 (attack), 1 (traffic threshold crossing), 2 (EIP unprotected),
+        3 (threat intelligence)
+     frequency_count: Alarm triggering frequency.
+     frequency_time : Alarm frequency time range, in minutes.
+     language :zh-cn (Chinese), en-us (English)
+     name : Notification group name.
+     topic_urn : URN of an alarm topic.
+     username : Its value is cfw.
 
          :example:
 
@@ -671,7 +666,13 @@ class UnloggedFirewallFilter(Filter):
 
 @Cfw.action_registry.register("update-log-config")
 class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
-    """Action to update firewall log configuration.lts_log_group_id is required
+    """Action to enable LTS to query and visualize traffic logs, access control logs,
+        and attack logs of a tenant generated more than seven days ago. All the parameters
+        are required and At least one of the attack log, access log, and flow log must
+        be enabled.if not enabled, log stream name can be blank .Attack logs and access
+        logs arein different formats and need to be recorded in different log streams. The
+        log stream will be associated with a structured CFW log template.
+
          :example:
 
          .. code-block:: yaml
@@ -683,34 +684,40 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
                   - type: check-unlogged-firewall
                  actions:
                     - type: update-log-config
-                        lts_log_group_id: 123456
-                        lts_attack_log_stream_id: 1234567
+                        lts_log_group_name: lts-group-XXX
+                        lts_attack_log_stream_name: lts-topic-XXX # enable
                         lts_attack_log_stream_enable: 1
-                        lts_access_log_stream_id: 1234568
+                        lts_access_log_stream_name: lts-topic-XXX # enable
                         lts_access_log_stream_enable: 1
-                        lts_flow_log_stream_id: 1234569
-                        lts_flow_log_stream_enable: 1
+                        lts_flow_log_stream_name:                 # disable
+                        lts_flow_log_stream_enable: 0
 
          """
     schema = type_schema(
         'update-log-config',
-        required=["lts_log_group_id"],  # 必填参数
-        lts_log_group_id={
+        required=["lts_log_group_name",
+                  "lts_attack_log_stream_name",
+                  "lts_attack_log_stream_enable",
+                  "lts_access_log_stream_name",
+                  "lts_access_log_stream_enable",
+                  "lts_flow_log_stream_name",
+                  "lts_flow_log_stream_enable"],  # 必填参数
+        lts_log_group_name={
             'type': 'string'
         },
-        lts_attack_log_stream_id={
+        lts_attack_log_stream_name={
             'type': 'string'
         },
         lts_attack_log_stream_enable={
             'type': 'integer', 'default': 0
         },
-        lts_access_log_stream_id={
+        lts_access_log_stream_name={
             'type': 'string'
         },
         lts_access_log_stream_enable={
             'type': 'integer', 'default': 0
         },
-        lts_flow_log_stream_id={
+        lts_flow_log_stream_name={
             'type': 'string'
         },
         lts_flow_log_stream_enable={
@@ -720,33 +727,118 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
 
     def process(self, resources):
         client = self.manager.get_client()
+        try:
+            access_log_stream_id, attack_log_stream_id, flow_log_stream_id, log_group_id = self.validate_log_infos()
 
-        for fw_instance_id in resources:
-            request = self.init_request(fw_instance_id)
-            try:
+            for fw_instance_id in resources:
+                request = self.init_request(fw_instance_id, log_group_id, access_log_stream_id, flow_log_stream_id,
+                                            attack_log_stream_id)
+
                 client.update_log_config(request)
                 log.info("[actions]-{update-log-config} "
                          "The resource:[cfw] with request:[%s] "
                          "update log config is success.", request)
-            except exceptions.ClientRequestException as e:
-                log.error("[actions]-{update-log-config} "
-                          "The resource:[cfw] with request:[%s] "
-                          "update log config is failed, cause: "
-                          "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
-                          request, e.status_code, e.request_id, e.error_code, e.error_msg)
-                raise
+        except exceptions.ClientRequestException as e:
+            log.error("[actions]-{update-log-config} "
+                      "The resource:[cfw] with request:[%s] "
+                      "update log config is failed, cause: "
+                      "status_code[%s] request_id[%s] error_code[%s] error_msg[%s]",
+                      request, e.status_code, e.request_id, e.error_code, e.error_msg)
+            raise
 
-    def init_request(self, fw_instance_id):
-        request = UpdateLogConfigRequest(fw_instance_id=fw_instance_id)
+    def validate_log_infos(self):
+        # get log group id
+        log_group_id, lts_client = self.validate_log_group_name()
+        # get log stream id
+        access_log_stream_id, attack_log_stream_id, flow_log_stream_id = (
+            self.validate_log_stream_names(log_group_id, lts_client))
+
+        return access_log_stream_id, attack_log_stream_id, flow_log_stream_id, log_group_id
+
+    def validate_log_stream_names(self, log_group_id, lts_client):
+        # get stream by group id
+        list_log_stream_req = ListLogStreamRequest(log_group_id=log_group_id)
+        log_stream_resp = lts_client.list_log_stream(list_log_stream_req)
+        log.info("[actions]-{update-log-config} "
+                 "The resource:[cfw] with request:[%s] "
+                 "query log stream is success.", list_log_stream_req)
+
+        # get stream id by stream name
+        access_log_stream_id = flow_log_stream_id = attack_log_stream_id = None
+        for log_stream in log_stream_resp.log_streams:
+            if self.data.get("lts_attack_log_stream_name") == log_stream.log_stream_name:
+                attack_log_stream_id = log_stream.log_stream_id
+            elif self.data.get("lts_access_log_stream_name") == log_stream.log_stream_name:
+                access_log_stream_id = log_stream.log_stream_id
+            elif self.data.get("lts_flow_log_stream_name") == log_stream.log_stream_name:
+                flow_log_stream_id = log_stream.log_stream_id
+
+        # At least one of the attack log, access log and flow log must be enabled
+        lts_access_log_stream_enable = self.data.get("lts_access_log_stream_enable")
+        lts_attack_log_stream_enable = self.data.get("lts_attack_log_stream_enable")
+        lts_flow_log_stream_enable = self.data.get("lts_flow_log_stream_enable")
+        if self.is_zero_or_none(lts_access_log_stream_enable) \
+                and self.is_zero_or_none(lts_attack_log_stream_enable) \
+                and self.is_zero_or_none(lts_flow_log_stream_enable):
+            log.error("[actions]-{update-log-config} "
+                      "The resource:[cfw]"
+                      "update log config is failed, cause: "
+                      "At least one of the attack log, access log,"
+                      " and flow log must be enabled")
+            raise Exception
+
+        # validate enabled log stream id
+        if lts_access_log_stream_enable == 1 and access_log_stream_id is None \
+                or lts_flow_log_stream_enable == 1 and flow_log_stream_id is None \
+                or lts_attack_log_stream_enable == 1 and attack_log_stream_id is None:
+            log.error("[actions]-{update-log-config} "
+                      "The resource:[cfw]"
+                      "update log config is failed, cause: "
+                      "log stream name error")
+            raise Exception
+
+        return access_log_stream_id, attack_log_stream_id, flow_log_stream_id
+
+    def is_zero_or_none(self, value):
+        return value is None or value == 0
+
+    def validate_log_group_name(self):
+        # get log group and validate log group name
+        log_group_id = ""
+        lts_client = local_session(self.manager.session_factory).client('lts-stream')
+        log_group_response = lts_client.list_log_groups(ListLogGroupsRequest())
+        log.info("[actions]-{update-log-config} "
+                 "The resource:[cfw] with response:[%s] "
+                 "query log group is success.", log_group_response)
+        input_log_group_name = self.data.get("lts_log_group_name")
+
+        for log_group in log_group_response.log_groups:
+            if input_log_group_name in log_group.log_group_name:
+                # get log group id
+                log_group_id = log_group.log_group_id
+
+        if log_group_id == "":
+            log.error("[actions]-{update-log-config} "
+                      "The resource:[cfw]"
+                      "update log config is failed, cause: "
+                      "log_group [%s] not exist",
+                      input_log_group_name)
+            raise Exception
+
+        return log_group_id, lts_client
+
+    def init_request(self, fw_instance_id, log_group_id, access_log_stream_id, flow_log_stream_id,
+                     attack_log_stream_id):
+        request = UpdateLogConfigRequest(fw_instance_id=fw_instance_id, )
         request.body = LogConfigDto(
             fw_instance_id=fw_instance_id,
-            lts_log_group_id=self.data.get("lts_log_group_id"),
+            lts_log_group_id=log_group_id,
             lts_enable=1,
-            lts_attack_log_stream_id=self.data.get("lts_attack_log_stream_id"),
+            lts_attack_log_stream_id=attack_log_stream_id,
             lts_attack_log_stream_enable=self.data.get("lts_attack_log_stream_enable"),
-            lts_access_log_stream_id=self.data.get("lts_access_log_stream_id"),
+            lts_access_log_stream_id=access_log_stream_id,
             lts_access_log_stream_enable=self.data.get("lts_access_log_stream_enable"),
-            lts_flow_log_stream_id=self.data.get("lts_flow_log_stream_id"),
+            lts_flow_log_stream_id=flow_log_stream_id,
             lts_flow_log_stream_enable=self.data.get("lts_flow_log_stream_enable"),
         )
         return request
@@ -757,7 +849,7 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
 
 @Cfw.filter_registry.register("check-firewall-acl")
 class NoAclFirewallFilter(Filter):
-    """Filter firewall without  acl .
+    """Filter firewall without acl .
 
         :example:
 
@@ -773,7 +865,7 @@ class NoAclFirewallFilter(Filter):
 
     def process(self, resources, event=None):
         client = self.manager.get_client()
-        no_acl_object_ids = []
+        acl = []
         object_id = ""
 
         for record in resources:
@@ -801,10 +893,8 @@ class NoAclFirewallFilter(Filter):
                          "query acl list is success.", request)
                 r = response.data.records
 
-                # If lts_enable is 1 in the response, log  is enabled.
-                # If lts_enable is 0 or response is empty, log is disabled.
                 if r is None or len(r) == 0:
-                    no_acl_object_ids.append(object_id)
+                    acl.append(object_id)
             except exceptions.ClientRequestException as e:
                 log.error("[filters]-{check-firewall-acl} "
                           "The resource:[cfw] with request:[%s] "
@@ -813,13 +903,16 @@ class NoAclFirewallFilter(Filter):
                           request, e.status_code, e.request_id, e.error_code, e.error_msg)
                 raise e
 
-        return no_acl_object_ids
+        return acl
 
 
 @Cfw.action_registry.register("create-default-acl-rule")
 class CreateDefaultAclRules(HuaweiCloudBaseAction):
-    """Action to create default acl rule for firewall.Configure protection
-    rules that block external access by default
+    """Action to create default ACL rule,This default ACL is a rule named "deny-all"
+    that blocks all network traffic. It applies to any source (0.0.0.0/0) and any
+    destination (0.0.0.0/0), covering all IP protocols and all port ranges (1-65535).
+    The rule direction is inbound and is always pinned at the bottom. parameter
+    status, which is used to determine whether a rule is enabled.
          :example:
 
          .. code-block:: yaml
@@ -827,24 +920,33 @@ class CreateDefaultAclRules(HuaweiCloudBaseAction):
              policies:
                - name: cfw-create-tags
                  resource: huaweicloud.cfw
-                 filters:
-                  - type: check-firewall-acl
                  actions:
                     - type: create-default-acl-rule
+                        status: 0                       # 0: disable; 1: enable
 
          """
-    schema = type_schema('create-default-acl-rule')
+    schema = type_schema('create-default-acl-rule',
+                         required=["status"],
+                         status={'type': 'integer', 'default': 0})
 
     def process(self, resources):
         client = self.manager.get_client()
 
-        for object_id in resources:
-            request = self.init_request(object_id)
+        for record in resources:
+            firewall = record.get('data').get('records')[0]
+            protect_objects = firewall.get('protect_objects')
             try:
-                client.add_acl_rule(request)
-                log.info("[actions]-{create-default-acl-rule} "
-                         "The resource:[cfw] with request:[%s] "
-                         "create default acl rule is success.", request)
+                # get object id
+                if protect_objects is not None:
+                    for p in protect_objects:
+                        obj_id = p.get('object_id')
+                        type = p.get('type')
+                        if obj_id is not None and type == 0:
+                            request = self.init_request(obj_id)
+                            client.add_acl_rule(request)
+                            log.info("[actions]-{create-default-acl-rule} "
+                                     "The resource:[cfw] with request:[%s] "
+                                     "create default acl rule is success.", request)
             except exceptions.ClientRequestException as e:
                 log.error("[actions]-{create-default-acl-rule} "
                           "The resource:[cfw] with request:[%s] "
@@ -853,7 +955,7 @@ class CreateDefaultAclRules(HuaweiCloudBaseAction):
                           request, e.status_code, e.request_id, e.error_code, e.error_msg)
                 raise
 
-    def init_request(self, object_id):
+    def init_request(self, object_id, *args):
         request = AddAclRuleRequest()
         serviceRules = RuleServiceDto(
             type=0,
@@ -870,8 +972,7 @@ class CreateDefaultAclRules(HuaweiCloudBaseAction):
             address="0.0.0.0/0"
         )
         sequenceRules = OrderRuleAclDto(
-            top=1,
-            bottom=0
+            bottom=1
         )
         listRulesbody = [
             AddRuleAclDtoRules(
@@ -879,7 +980,7 @@ class CreateDefaultAclRules(HuaweiCloudBaseAction):
                 sequence=sequenceRules,
                 address_type=0,
                 action_type=1,
-                status=1,
+                status=self.data.get("status"),
                 long_connect_enable=0,
                 direction=0,
                 source=sourceRules,
