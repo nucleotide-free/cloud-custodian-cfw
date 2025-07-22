@@ -670,7 +670,7 @@ class UpdateFirewallLogConfig(HuaweiCloudBaseAction):
         and attack logs of a tenant generated more than seven days ago. All the parameters
         are required and At least one of the attack log, access log, and flow log must
         be enabled.if not enabled, log stream name can be blank .Attack logs and access
-        logs arein different formats and need to be recorded in different log streams. The
+        logs are in different formats and need to be recorded in different log streams. The
         log stream will be associated with a structured CFW log template.
 
          :example:
